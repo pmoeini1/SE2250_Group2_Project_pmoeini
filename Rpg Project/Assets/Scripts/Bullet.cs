@@ -13,6 +13,7 @@ using UnityEngine;
 　　		if (other.gameObject.tag == "Enemy") {
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("EnemyDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
+                other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
 　　	}
 　　
