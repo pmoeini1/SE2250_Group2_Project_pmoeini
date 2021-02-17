@@ -29,5 +29,10 @@ public class PlayerMovement : MonoBehaviour
             
             rb.AddForce(jump*thrust);
         }
+
+        if (gameObject.transform.position.y < 12 || gameObject.transform.position.x < -65 || gameObject.transform.position.x > 320) 
+        {
+            Destroy(gameObject);
+        }
     }
 }
