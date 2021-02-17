@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     float speed = 0.4f;
-    float thrust = 1f;
+    float thrust = 4f;
     public Rigidbody rb;
     Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (gameObject.transform.position.y < 12 || gameObject.transform.position.x < -65 || gameObject.transform.position.x > 320) 
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("Scene1");
         }
     }
 }
