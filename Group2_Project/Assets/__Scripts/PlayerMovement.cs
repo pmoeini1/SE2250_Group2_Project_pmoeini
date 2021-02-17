@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float speed = 0.9f;
-    float thrust = 10f;
+    float speed = 0.4f;
+    float thrust = 1f;
     public Rigidbody rb;
     Vector3 jump = new Vector3(0.0f, 2.0f, 0.0f);
     // Update is called once per frame
