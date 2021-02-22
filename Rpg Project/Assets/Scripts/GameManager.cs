@@ -25,7 +25,6 @@ using UnityEngine.SceneManagement;
 　　
 　　	
 　　	void OnGUI(){
-　　
 　　		for (int h =0; h < playersHealth; h++) {
 　　			GUI.DrawTexture(new Rect(screenPositionX + (h*iconSizeX),screenPositionY,iconSizeX,iconSizeY),playersHealthTexture,ScaleMode.ScaleToFit,true,0);
 　　		}
