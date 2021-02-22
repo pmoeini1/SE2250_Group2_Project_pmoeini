@@ -14,7 +14,11 @@ using UnityEngine;
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("EnemyDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
+                
 　　		}
+            if (other.gameObject.tag == "Walls") {
+            Destroy(gameObject);
+            }
 　　	}
 　　
 　　	void FixedUpdate(){

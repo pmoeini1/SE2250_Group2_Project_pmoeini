@@ -7,7 +7,8 @@ using System.Collections;
 　　	
 　　	float startPos;
 　　	float endPos;
-　　	
+　　	float takenDamage = 0.2f;
+
 　　	public int unitsToMove = 5;
 　　	
 　　	public int moveSpeed = 2;
@@ -18,6 +19,8 @@ using System.Collections;
 　　	
 　　	public bool basicEnemy;
 　　	public bool advancedEnemy;
+
+
 　　
 　　	void Awake(){
 　　		startPos = transform.position.x;
@@ -56,7 +59,22 @@ using System.Collections;
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
 　　	}
-　　
+
+        
+        public IEnumerator TakenDamage(){
+		    GetComponent<Renderer>().enabled = false;
+		    yield return new WaitForSeconds(takenDamage);
+		    GetComponent<Renderer>().enabled = true;
+		    yield return new WaitForSeconds(takenDamage);
+		    GetComponent<Renderer>().enabled = false;
+		    yield return new WaitForSeconds(takenDamage);
+		    GetComponent<Renderer>().enabled = true;
+		    yield return new WaitForSeconds(takenDamage);
+		    GetComponent<Renderer>().enabled = false;
+		    yield return new WaitForSeconds(takenDamage);
+		    GetComponent<Renderer>().enabled = true;
+		    yield return new WaitForSeconds(takenDamage);
+	    } 
 　　	
 　　	void EnemyDamaged(int damage){
 　　		if (enemyHealth > 0) {
