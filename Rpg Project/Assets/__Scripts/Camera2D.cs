@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Camera2D : MonoBehaviour {
 　　
@@ -27,6 +28,17 @@ public class Camera2D : MonoBehaviour {
 　　		Vector3 newPos = new Vector3 (newPos2D.x, newPos2D.y, transform.position.z);
 　　		
 　　		transform.position = Vector3.Slerp (transform.position, newPos, Time.time);
+
+            if (player.position.y < -5){
+                StartCoroutine(Restart());
+            }
+
 　　	}
+
+        public IEnumerator Restart(){
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Scene1");
+        }
+
 　　}
 
