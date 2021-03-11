@@ -2,30 +2,26 @@
 　　using System.Collections;
 　　
 　　public class Controller2D : MonoBehaviour {
-　　	
+　　	//Reference to the chracterController 
 　　	CharacterController characterController;
-　　	
+　　	//For changing how fast the player fall( less gravity = jump higher + longer)
 　　	public float gravity = 10;
-　　	
+　　	//For changing the speed of the player 
 　　	public float walkSpeed = 5;
-　　	
+　　	//For changing how high the player could jump
 　　	public float jumpHeight = 5;
-　　
-　　	
+　　	//How long the player is invulnerable for after taken damage
 　　	float takenDamage = 0.2f;
-　　
-　　	
+        //Refrence to the bullet prefab
+        public Rigidbody bulletPrefab;
 　　	Vector3 moveDirection = Vector3.zero;
 　　	float horizontal = 0;
-　　	
-　　	public Rigidbody bulletPrefab;
 　　	float attackRate = 0.5f;
 　　	float coolDown;
 　　	bool lookRight = true;
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
-　　
 　　	}
 　　	
 　　	
@@ -39,8 +35,6 @@
 　　		if (horizontal == 0) {
 　　			moveDirection.x = horizontal;		
 　　		}
-　　
-　　
 　　		
 　　		if (horizontal > 0.01f) {
 　　			lookRight = true;
