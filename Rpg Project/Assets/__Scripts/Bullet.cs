@@ -5,6 +5,21 @@ using UnityEngine;
 　　
 　　
 　　public class Bullet : MonoBehaviour {
+
+        private static Bullet _instance;
+
+        public static Bullet Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = GameObject.FindObjectOfType<Bullet>();
+                }
+
+                return _instance;
+            }
+        }
 　　
 　　	int damageValue = 1;
 　　
