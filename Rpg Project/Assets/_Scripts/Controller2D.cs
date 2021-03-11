@@ -1,5 +1,6 @@
 ﻿    using UnityEngine;
 　　using System.Collections;
+    
 　　
 　　public class Controller2D : MonoBehaviour {
 　　	//Reference to the chracterController 
