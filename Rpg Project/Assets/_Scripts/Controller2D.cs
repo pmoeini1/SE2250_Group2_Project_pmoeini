@@ -2,7 +2,7 @@
 　　using System.Collections;
     
 　　
-　　public class Controller2D : MonoBehaviour {
+　　public class Controller2D : MonoBehaviour, IController2D {
 　　	//Reference to the chracterController 
 　　	CharacterController characterController;
 　　	//For changing how fast the player fall( less gravity = jump higher + longer)
@@ -104,7 +104,7 @@
 　　		yield return new WaitForSeconds(takenDamage);
 　　	} 
 
-        void Custom() {
+        public void Custom() {
 
             player.localScale += new Vector3(0.5f, 0.5f, 0);
             walkSpeed -= 1.5f;
@@ -112,7 +112,7 @@
             takenDamage += 0.2f;
         }
 
-        void UndoCustom() {
+        public void UndoCustom() {
 
             player.localScale -= new Vector3(0.5f, 0.5f, 0);
             walkSpeed += 1.5f;
