@@ -4836,6 +4836,7 @@ MonoBehaviour:
   jumpHeight: 7
   bulletPrefab: {fileID: 2416315483386571562, guid: 36540a2567d9b5449ad84eb1f005ea5a,
     type: 3}
+  mine: {fileID: -5317369926201120971, guid: 80b13542961e82147af3b0e56d3b0c04, type: 3}
   player: {fileID: 2004600090}
 --- !u!1001 &2041949032
 PrefabInstance:

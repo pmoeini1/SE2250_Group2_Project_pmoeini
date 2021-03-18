@@ -15,6 +15,7 @@
 　　	float takenDamage = 0.2f;
         //Refrence to the bullet prefab
         public Rigidbody bulletPrefab;
+        public Rigidbody mine;
         public Transform player;
 　　	Vector3 moveDirection = Vector3.zero;
 　　	float horizontal = 0;
@@ -71,6 +72,9 @@
                 UndoCustom();
                 custom = false;
             }
+            if (Input.GetKeyDown("m")){
+                MineAttack();
+            }
 　　	}
 　　	
 　　	
@@ -88,6 +92,10 @@
 　　			coolDown = Time.time + attackRate;
 　　		}
 　　	}
+
+        void MineAttack(){
+            // Instantiate mine
+        }
 　　	
 　　	public IEnumerator TakenDamage(){
 　　		GetComponent<Renderer>().enabled = false;
