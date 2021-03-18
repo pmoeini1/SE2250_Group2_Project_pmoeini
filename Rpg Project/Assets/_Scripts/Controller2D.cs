@@ -15,14 +15,17 @@
 　　	float takenDamage = 0.2f;
         //Refrence to the bullet prefab
         public Rigidbody bulletPrefab;
+        public Transform player;
 　　	Vector3 moveDirection = Vector3.zero;
 　　	float horizontal = 0;
 　　	float attackRate = 0.5f;
 　　	float coolDown;
 　　	bool lookRight = true;
+        bool custom = false;
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
+            custom = false;
 　　	}
 　　	
 　　	
@@ -58,6 +61,16 @@
 　　				BulletAttack ();	
 　　			}
 　　		}
+
+            if (Input.GetKeyDown("c") && !custom){
+                Custom();
+                custom = true;
+            }
+
+            if (Input.GetKeyDown("u") && custom){
+                UndoCustom();
+                custom = false;
+            }
 　　	}
 　　	
 　　	
@@ -90,4 +103,20 @@
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
 　　	} 
+
+        void Custom() {
+
+            player.localScale += new Vector3(0.5f, 0.5f, 0);
+            walkSpeed -= 1.5f;
+            
+            takenDamage += 0.2f;
+        }
+
+        void UndoCustom() {
+
+            player.localScale -= new Vector3(0.5f, 0.5f, 0);
+            walkSpeed += 1.5f;
+            
+            takenDamage -= 0.2f;
+        }
 　　}
