@@ -5,9 +5,9 @@ using UnityEngine;
 　　
 　　
 　　public class Bullet : MonoBehaviour {
-
+        // Bullet Singleton
         private static Bullet _instance;
-
+        // Bullet property
         public static Bullet Instance
         {
             get
@@ -20,10 +20,10 @@ using UnityEngine;
                 return _instance;
             }
         }
-　　
+        // set value of damage
 　　	int damageValue = 1;
 　　
-
+        // handle collisions with enemies
 　　	void OnTriggerEnter(Collider other){
 　　		if (other.gameObject.tag == "Enemy") {
 　　			Destroy(gameObject);
@@ -31,11 +31,12 @@ using UnityEngine;
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
 　　		}
+            // handle collisions with walls
             if (other.gameObject.tag == "Walls") {
             Destroy(gameObject);
             }
 　　	}
-　　
+        // Destroy Bullet once out of screen
 　　	void FixedUpdate(){
 　　		Destroy (gameObject, 1.25f);
 　　	}

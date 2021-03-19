@@ -23,19 +23,21 @@ using System.Collections;
 
 　　
 　　	void Awake(){
+			// set up boundaries for horizontal movement
 　　		startPos = transform.position.x;
 　　		endPos = startPos + unitsToMove;
-　　
+			// set up small enemy health
 　　		if (basicEnemy) {
 　　			enemyHealth = 3;		
 　　		}
-　　
+			// set up large enemy health
 　　		if (advancedEnemy) {
 　　			enemyHealth = 6;		
 　　		}
 　　	}
 　　	
 　　	void Update(){
+					// move left and right within boundaries
 　　		        if (moveRight) {
 　　				GetComponent<Rigidbody>().position += Vector3.right * moveSpeed * Time.deltaTime;	
 　　				}
@@ -54,6 +56,7 @@ using System.Collections;
 　　	int damageValue = 1;
 　　	
 　　	void OnTriggerEnter(Collider col){
+			// damage player if collides with enemy
 　　		if (col.gameObject.tag == "Player") {
 　　			gameManager.SendMessage("PlayerDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
@@ -62,6 +65,7 @@ using System.Collections;
 
         
         public IEnumerator TakenDamage(){
+			// flash enemy if it takes damage
 		    GetComponent<Renderer>().enabled = false;
 		    yield return new WaitForSeconds(takenDamage);
 		    GetComponent<Renderer>().enabled = true;
@@ -77,6 +81,7 @@ using System.Collections;
 	    } 
 　　	
 　　	void EnemyDamaged(int damage){
+			// destroy enemy if enemyHealth is <=0
 　　		if (enemyHealth > 0) {
 　　			enemyHealth -= damage;		
 　　		}

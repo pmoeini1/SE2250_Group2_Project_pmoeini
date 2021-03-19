@@ -31,16 +31,16 @@
 　　	
 　　	
 　　	void Update () {
-　　		
+　　		// set up horizontal player movement
 　　		characterController.Move (moveDirection * Time.deltaTime);
 　　		horizontal = Input.GetAxis("Horizontal");
-　　		
+　　		// fall if unsupported
 　　		moveDirection.y -= gravity * Time.deltaTime;
-　　
+            // stay static if no input
 　　		if (horizontal == 0) {
 　　			moveDirection.x = horizontal;		
 　　		}
-　　		
+　　		// set up left & right movement
 　　		if (horizontal > 0.01f) {
 　　			lookRight = true;
 　　			moveDirection.x = horizontal * walkSpeed;
@@ -50,28 +50,29 @@
 　　			lookRight = false;
 　　			moveDirection.x = horizontal * walkSpeed;
 　　		}
-　　		
+　　		// jump if player is touching ground
 　　		if (characterController.isGrounded) {
 　　			if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
 　　			}
 　　		}
-　　		
+　　		// BulletAttack() when F key is pressed
 　　		if (Time.time >= coolDown) {
 　　			if (Input.GetKeyDown (KeyCode.F)){
 　　				BulletAttack ();	
 　　			}
 　　		}
-
+            // Custom() when C key is pressed and player is not already customized
             if (Input.GetKeyDown("c") && !custom){
                 Custom();
                 custom = true;
             }
-
+            // UndoCustom() when U key is pressed and player is already customized
             if (Input.GetKeyDown("u") && custom){
                 UndoCustom();
                 custom = false;
             }
+            // MineAttack() when M key is pressed
             if (Input.GetKeyDown("m")){
                 MineAttack();
             }
@@ -80,13 +81,13 @@
 　　	
 　　	void BulletAttack(){
 　　		if (lookRight) {
-　　			
+　　			// shoot right if facing right
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
 　　			bPrefab.GetComponent<Rigidbody>().AddForce (Vector3.right * 500);
 　　			coolDown = Time.time + attackRate;
 　　				}
 　　		else {
-　　			
+　　			// shoot left if facing left
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
 　　			bPrefab.GetComponent<Rigidbody>().AddForce (-Vector3.right * 500);
 　　			coolDown = Time.time + attackRate;
@@ -98,6 +99,7 @@
         }
 　　	
 　　	public IEnumerator TakenDamage(){
+            // flash object once damage is taken
 　　		GetComponent<Renderer>().enabled = false;
 　　		yield return new WaitForSeconds(takenDamage);
 　　		GetComponent<Renderer>().enabled = true;
@@ -113,7 +115,7 @@
 　　	} 
 
         public void Custom() {
-
+            // increase player size, player invulnerability, decrease speed
             player.localScale += new Vector3(0.5f, 0.5f, 0);
             walkSpeed -= 1.5f;
             
@@ -121,7 +123,7 @@
         }
 
         public void UndoCustom() {
-
+            // undo changes from Custom() method
             player.localScale -= new Vector3(0.5f, 0.5f, 0);
             walkSpeed += 1.5f;
             
