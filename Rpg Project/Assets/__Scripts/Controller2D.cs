@@ -95,7 +95,11 @@
 　　	}
 
         void MineAttack(){
-            // Instantiate mine
+            // Instantiate mine where player drops it
+            Vector3 mineDrop = transform.position;
+            mineDrop -= new Vector3(0f, 0.5f, -1f);
+            Instantiate (mine, mineDrop, Quaternion.identity);
+            
         }
 　　	
 　　	public IEnumerator TakenDamage(){
