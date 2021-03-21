@@ -56,6 +56,13 @@
 　　				moveDirection.y = jumpHeight;
 　　			}
 　　		}
+            // allow player to fly if customized
+            if (custom){
+                if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
+　　				moveDirection.y = jumpHeight;
+　　			}
+            }
+
 　　		// BulletAttack() when F key is pressed
 　　		if (Time.time >= coolDown) {
 　　			if (Input.GetKeyDown (KeyCode.F)){
@@ -122,7 +129,7 @@
             // increase player size, player invulnerability, decrease speed
             player.localScale += new Vector3(0.5f, 0.5f, 0);
             walkSpeed -= 1.5f;
-            
+            jumpHeight -= 2.5f;
             takenDamage += 0.2f;
         }
 
@@ -130,7 +137,7 @@
             // undo changes from Custom() method
             player.localScale -= new Vector3(0.5f, 0.5f, 0);
             walkSpeed += 1.5f;
-            
+            jumpHeight += 2.5f;
             takenDamage -= 0.2f;
         }
 　　}
