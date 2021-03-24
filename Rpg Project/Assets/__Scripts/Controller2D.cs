@@ -3,6 +3,7 @@
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
+        public ParticleSystem dust;
 　　	//Reference to the chracterController 
 　　	CharacterController characterController;
 　　	//For changing how fast the player fall( less gravity = jump higher + longer)
@@ -53,15 +54,16 @@
 　　			moveDirection.x = horizontal * walkSpeed;
 　　		}
 
-            //Rotate the character 
-            //When moving left the character will face left
+
+            //Creates dust when play changes direction 
+            //Creates dust when moving left 
             if(Input.GetAxis("Horizontal")<0){
-                characterScale.x = -1;
+                CreateDust();
             }
 
-            //When moving right the character will face right 
+            //Creates dust when moving right 
             if(Input.GetAxis("Horizontal")>0){
-                characterScale.x =1;
+               CreateDust();
             }
 
 　　		// jump if player is touching ground
@@ -97,7 +99,7 @@
             if (Input.GetKeyDown("m")){
                 MineAttack();
             }
-            transform.localScale = characterScale;
+           
 　　	}
 　　	
 　　	
@@ -154,5 +156,10 @@
             walkSpeed += 1.5f;
             jumpHeight += 2.5f;
             takenDamage -= 0.2f;
+        }
+
+        public void CreateDust(){
+            //Plays dust animation
+            dust.Play();
         }
 　　}
