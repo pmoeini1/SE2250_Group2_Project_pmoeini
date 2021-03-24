@@ -31,6 +31,8 @@
 　　	
 　　	
 　　	void Update () {
+            //Transforms the scaling of the character 
+            Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
 　　		characterController.Move (moveDirection * Time.deltaTime);
 　　		horizontal = Input.GetAxis("Horizontal");
@@ -50,6 +52,18 @@
 　　			lookRight = false;
 　　			moveDirection.x = horizontal * walkSpeed;
 　　		}
+
+            //Rotate the character 
+            //When moving left the character will face left
+            if(Input.GetAxis("Horizontal")<0){
+                characterScale.x = -1;
+            }
+
+            //When moving right the character will face right 
+            if(Input.GetAxis("Horizontal")>0){
+                characterScale.x =1;
+            }
+
 　　		// jump if player is touching ground
 　　		if (characterController.isGrounded) {
 　　			if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
@@ -83,6 +97,7 @@
             if (Input.GetKeyDown("m")){
                 MineAttack();
             }
+            transform.localScale = characterScale;
 　　	}
 　　	
 　　	
