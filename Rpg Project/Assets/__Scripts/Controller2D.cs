@@ -129,6 +129,16 @@
             Instantiate (mine, mineDrop, Quaternion.identity);
             
         }
+
+        //adds player health when player collides with health pickup
+        void OnTriggerEnter(Collider other){
+		if (other.tag == "Health") {
+            if (GameManager.playersHealth < 5){
+			GameManager.playersHealth++;
+            }
+			Destroy(other.gameObject);
+		}
+	}
 　　	
 　　	public IEnumerator TakenDamage(){
             // flash object once damage is taken

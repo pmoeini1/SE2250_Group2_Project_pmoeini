@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 　　	public int iconSizeX = 25;
 　　	public int iconSizeY = 25;
 　　	//How many lives the player has 
-　　	public int playersHealth = 3;
+　　	public static int playersHealth = 5;
 
         //Declare player as a GameObject
 　　	GameObject player;
