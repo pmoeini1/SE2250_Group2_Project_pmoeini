@@ -3,6 +3,9 @@
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
+        // number of enemy collisions
+        public int hitsTaken = 0;
+        // particle system
         public ParticleSystem dust;
 　　	//Reference to the chracterController 
 　　	CharacterController characterController;
@@ -54,8 +57,6 @@
 　　			moveDirection.x = horizontal * walkSpeed;
 　　		}
 
-
-            //Creates dust when play changes direction 
             //Creates dust when moving left 
             if(Input.GetAxis("Horizontal")<0){
                 CreateDust();
@@ -72,8 +73,8 @@
 　　				moveDirection.y = jumpHeight;
 　　			}
 　　		}
-            // allow player to fly if customized
-            if (custom && inBounds()){
+            // allow player to fly if customized and in bounds
+            if (custom && InBounds()){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
 　　			}
@@ -140,6 +141,10 @@
 　　		yield return new WaitForSeconds(takenDamage);
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
+            hitsTaken++;
+            takenDamage += 0.05f;
+            jumpHeight += 1.5f;
+            walkSpeed += 2f;
 　　	} 
 
         public void Custom() {
@@ -163,11 +168,13 @@
             dust.Play();
         }
 
-        public bool inBounds(){
+        public bool InBounds(){
             if (transform.position.y <= 8){
                 return true;
             } else {
                 return false;
             }
         }
+
+        
 　　}
