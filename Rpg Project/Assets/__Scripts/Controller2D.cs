@@ -137,6 +137,7 @@
 			GameManager.playersHealth++;
             }
 			Destroy(other.gameObject);
+            points++;
 		}
 	}
 　　	

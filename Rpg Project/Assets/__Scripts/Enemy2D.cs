@@ -64,7 +64,7 @@ using System.Collections;
 			if (col.gameObject.CompareTag("Mine")){
             Destroy(col.gameObject);
             Destroy(gameObject);
-			player.points += 2;
+			player.points += 3;
         	}
 　　	}
 
@@ -87,7 +87,7 @@ using System.Collections;
 	    } 
 　　	
 　　	void EnemyDamaged(int damage){
-		player.points++;
+		player.points += 2;
 			// destroy enemy if enemyHealth is <=0
 　　		if (enemyHealth > 0) {
 　　			enemyHealth -= damage;		
