@@ -129,13 +129,23 @@
 
         //adds player health when player collides with health pickup
         void OnTriggerEnter(Collider other){
-		if (other.tag == "Health") {
-            if (GameManager.playersHealth < 5){
-			GameManager.playersHealth++;
-            }
-			Destroy(other.gameObject);
+		    if (other.tag == "Health") {
+                 if (GameManager.playersHealth < 5){
+			        GameManager.playersHealth++;
+                }
+			    Destroy(other.gameObject);
+		    }
+           
+            if (other.tag == "Speed") {
+			  StartCoroutine(increaseSpeed(5f));
+			    Destroy(other.gameObject);
 		}
-	}
+        
+
+	    }
+
+      
+	
 　　	
 　　	public IEnumerator TakenDamage(){
             // flash object once damage is taken
@@ -152,10 +162,13 @@
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
             hitsTaken++;
-            takenDamage += 0.05f;
-            jumpHeight += 1.5f;
-            walkSpeed += 2f;
 　　	} 
+
+        IEnumerator increaseSpeed(float duration){
+            walkSpeed = 10;
+            yield return new WaitForSeconds(duration);
+            walkSpeed = 5;
+        }
 
         public void Custom() {
             // increase player size, player invulnerability, decrease speed

@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - Health
   - Mine
+  - Speed
   layers:
   - Default
   - TransparentFX
