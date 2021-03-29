@@ -135,10 +135,16 @@
 		if (other.tag == "Health") {
             if (GameManager.playersHealth < 5){
 			GameManager.playersHealth++;
+            takenDamage -= 0.05f;
+            jumpHeight -= 1.5f;
+            walkSpeed -= 2f;
             }
 			Destroy(other.gameObject);
             points++;
 		}
+        if (other.tag == "Trampoline"){
+            moveDirection.y = jumpHeight*1.5f;
+        }
 	}
 　　	
 　　	public IEnumerator TakenDamage(){
