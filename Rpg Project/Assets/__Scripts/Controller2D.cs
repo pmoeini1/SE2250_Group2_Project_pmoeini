@@ -73,7 +73,7 @@
 　　			}
 　　		}
             // allow player to fly if customized
-            if (custom){
+            if (custom && inBounds()){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
 　　			}
@@ -161,5 +161,13 @@
         public void CreateDust(){
             //Plays dust animation
             dust.Play();
+        }
+
+        public bool inBounds(){
+            if (transform.position.y <= 8){
+                return true;
+            } else {
+                return false;
+            }
         }
 　　}
