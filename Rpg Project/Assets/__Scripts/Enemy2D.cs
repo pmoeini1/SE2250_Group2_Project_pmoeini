@@ -2,7 +2,7 @@
 using System.Collections;
 　　
 　　public class Enemy2D : MonoBehaviour {
-　　	
+　　	public Controller2D player;
 　　	public GameManager gameManager;
 　　	
 　　	float startPos;
@@ -61,6 +61,11 @@ using System.Collections;
 　　			gameManager.SendMessage("PlayerDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
+			if (col.gameObject.CompareTag("Mine")){
+            Destroy(col.gameObject);
+            Destroy(gameObject);
+			player.points += 3;
+        	}
 　　	}
 
         
@@ -78,9 +83,11 @@ using System.Collections;
 		    yield return new WaitForSeconds(takenDamage);
 		    GetComponent<Renderer>().enabled = true;
 		    yield return new WaitForSeconds(takenDamage);
+			
 	    } 
 　　	
 　　	void EnemyDamaged(int damage){
+		player.points += 2;
 			// destroy enemy if enemyHealth is <=0
 　　		if (enemyHealth > 0) {
 　　			enemyHealth -= damage;		
