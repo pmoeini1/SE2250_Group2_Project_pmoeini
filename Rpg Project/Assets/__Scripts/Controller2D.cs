@@ -3,6 +3,8 @@
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
+        // points counter
+        public int points = 0;
         // number of enemy collisions
         public int hitsTaken = 0;
         // particle system
@@ -35,6 +37,7 @@
 　　	
 　　	
 　　	void Update () {
+            Debug.Log(points);
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
