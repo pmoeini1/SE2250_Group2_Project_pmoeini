@@ -13,6 +13,8 @@ using System.Collections;
 　　	
 　　	public int moveSpeed = 2;
 　　	
+		public int damageValue = 1;
+
 　　	bool moveRight = true;
 　　
 　　	int enemyHealth = 1;
@@ -52,8 +54,6 @@ using System.Collections;
 　　				}
 　　		}
 　　	
-　　
-　　	int damageValue = 1;
 　　	
 　　	void OnTriggerEnter(Collider col){
 			// damage player if collides with enemy
@@ -82,8 +82,7 @@ using System.Collections;
 		    GetComponent<Renderer>().enabled = false;
 		    yield return new WaitForSeconds(takenDamage);
 		    GetComponent<Renderer>().enabled = true;
-		    yield return new WaitForSeconds(takenDamage);
-			
+		    yield return new WaitForSeconds(takenDamage);	
 	    } 
 　　	
 　　	void EnemyDamaged(int damage){
