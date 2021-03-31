@@ -82,7 +82,8 @@ using System.Collections;
 		    GetComponent<Renderer>().enabled = false;
 		    yield return new WaitForSeconds(takenDamage);
 		    GetComponent<Renderer>().enabled = true;
-		    yield return new WaitForSeconds(takenDamage);	
+		    yield return new WaitForSeconds(takenDamage);
+				
 	    } 
 　　	
 　　	void EnemyDamaged(int damage){

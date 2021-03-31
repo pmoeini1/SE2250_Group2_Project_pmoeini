@@ -3,8 +3,9 @@
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
+        
         // points counter
-        public int points = 0;
+        public int points;
         // number of enemy collisions
         public int hitsTaken = 0;
         // particle system
@@ -37,11 +38,13 @@
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
+            points = 0;
+            Debug.Log(points);
 　　	}
 　　	
 　　	
 　　	void Update () {
-            Debug.Log(points);
+            Debug.Log("Points: " + points.ToString());
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
@@ -109,6 +112,7 @@
                 MineAttack();
                 }
             }
+            
            
 　　	}
 　　	
@@ -171,6 +175,7 @@
             if(other.tag == "Gold"){
                 GameManager.playersWealth++;
                 Destroy(other.gameObject);
+                points++;
             }
         
 	    }
@@ -193,6 +198,8 @@
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
             hitsTaken++;
+            walkSpeed += 1f;
+            jumpHeight += 1f;
 　　	} 
 
 
