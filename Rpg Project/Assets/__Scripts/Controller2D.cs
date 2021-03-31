@@ -107,6 +107,7 @@
             if (Input.GetKeyDown("m")){
                 MineAttack();
             }
+            
            
 　　	}
 　　	
@@ -158,6 +159,7 @@
             if(other.tag == "Gold"){
                 GameManager.playersWealth++;
                 Destroy(other.gameObject);
+                points++;
             }
         
 	    }
@@ -179,7 +181,10 @@
 　　		yield return new WaitForSeconds(takenDamage);
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
+            
             hitsTaken++;
+            walkSpeed += 1f;
+            jumpHeight += 1f;
 　　	} 
 
 
