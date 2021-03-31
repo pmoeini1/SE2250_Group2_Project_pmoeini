@@ -33,6 +33,7 @@
 　　	float coolDown;
 　　	bool lookRight = true;
         bool custom = false;
+        int numOfMine = 0;
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
@@ -105,7 +106,9 @@
             }
             // MineAttack() when M key is pressed
             if (Input.GetKeyDown("m")){
+                if (numOfMine <= 10){
                 MineAttack();
+                }
             }
            
 　　	}
@@ -131,6 +134,7 @@
             Vector3 mineDrop = transform.position;
             mineDrop -= new Vector3(0f, 0.5f, -1f);
             Instantiate (mine, mineDrop, Quaternion.identity);
+            numOfMine ++;
             
         }
 
