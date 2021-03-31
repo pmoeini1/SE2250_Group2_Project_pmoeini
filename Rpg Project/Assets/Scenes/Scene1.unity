@@ -5594,8 +5594,11 @@ MonoBehaviour:
   controller2D: {fileID: 2004600092}
   playersHealthTexture: {fileID: 2800000, guid: c068c6ec28461ad478132b44a04985f1,
     type: 3}
+  playersWealthTexture: {fileID: 0}
+  playersEXPTexture: {fileID: 0}
   screenPositionX: 26
   screenPositionY: 25
+  iconOffset: 0
   iconSizeX: 100
   iconSizeY: 100
 --- !u!4 &423554962 stripped
@@ -6538,9 +6541,9 @@ Transform:
   m_LocalPosition: {x: 17.013596, y: -0.4104879, z: -2.7946188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 134300541}
   - {fileID: 1178474478}
   - {fileID: 1956162255}
+  - {fileID: 134300541}
   - {fileID: 463867359}
   - {fileID: 1971339807}
   - {fileID: 1100960938}
