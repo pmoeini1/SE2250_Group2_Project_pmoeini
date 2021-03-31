@@ -10,6 +10,7 @@ TagManager:
   - Mine
   - Speed
   - Trampoline
+  - Gold
   layers:
   - Default
   - TransparentFX

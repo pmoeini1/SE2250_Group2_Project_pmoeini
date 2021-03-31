@@ -21,10 +21,14 @@
 　　	float takenDamage = 0.2f;
         //Refrence to the bullet prefab
         public Rigidbody bulletPrefab;
+        //referece to mine prefab
         public Rigidbody mine;
+        //reference to player object
         public Transform player;
+        //the direction the player is moving toward
 　　	Vector3 moveDirection = Vector3.zero;
 　　	float horizontal = 0;
+        //how fast the player attacks
 　　	float attackRate = 0.5f;
 　　	float coolDown;
 　　	bool lookRight = true;
@@ -130,8 +134,9 @@
             
         }
 
-        //adds player health when player collides with health pickup
+        
         void OnTriggerEnter(Collider other){
+            //adds player health when player collides with health pickup
 		    if (other.tag == "Health") {
                  if (GameManager.playersHealth < 5){
 			        GameManager.playersHealth++;
@@ -139,14 +144,20 @@
 			    Destroy(other.gameObject);
                 
 		    }
-           
+           //add player health when player collides with speed boost pickup
             if (other.tag == "Speed") {
 			  StartCoroutine(increaseSpeed(5f));
 			    Destroy(other.gameObject);
 		    }
 
+            //push player upwards when player collides with trampoline gameobject
             if (other.tag == "Trampoline"){
             moveDirection.y = jumpHeight*1.5f;
+            }
+
+            if(other.tag == "Gold"){
+                GameManager.playersWealth++;
+                Destroy(other.gameObject);
             }
         
 	    }
@@ -170,6 +181,7 @@
 　　		yield return new WaitForSeconds(takenDamage);
             hitsTaken++;
 　　	} 
+
 
         IEnumerator increaseSpeed(float duration){
             walkSpeed = 10;
