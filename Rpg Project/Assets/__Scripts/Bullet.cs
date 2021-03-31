@@ -26,6 +26,7 @@ using UnityEngine;
         // handle collisions with enemies
 　　	void OnTriggerEnter(Collider other){
 　　		if (other.gameObject.tag == "Enemy") {
+                GameManager.playersEXP += 20;
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("EnemyDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);

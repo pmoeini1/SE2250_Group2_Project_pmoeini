@@ -25,7 +25,8 @@ using UnityEngine.SceneManagement;
 　　	//How many lives the player has 
 　　	public static int playersHealth = 5;
         public static int playersWealth = 0;
-        public static int playerEXP = 0;
+        public static int playersEXP = 0;
+        public static int numOfMine = 10;
 
         //Declare player as a GameObject
 　　	GameObject player;
@@ -37,6 +38,13 @@ using UnityEngine.SceneManagement;
 　　
 　　	
 　　	void OnGUI(){
+
+                GUIStyle textStyle = new GUIStyle();
+                textStyle.fontSize = 50;
+                textStyle.normal.textColor = Color.white;
+                textStyle.fontStyle = FontStyle.Bold;
+
+
 　　		for (int h = 0; h < playersHealth; h++) {
                         //Draw health bar
 　　			GUI.DrawTexture(new Rect(screenPositionX + (h*iconSizeX),
@@ -56,7 +64,7 @@ using UnityEngine.SceneManagement;
                                                  true,0
                                                 );
 
-                        //Draw Gold bar
+                        //Draw Wealth bar
                         GUI.DrawTexture(new Rect(screenPositionX, 
                                                  screenPositionY + iconOffset * 2, 
                                                  iconSizeX, iconSizeY),
@@ -64,7 +72,7 @@ using UnityEngine.SceneManagement;
                                                  ScaleMode.ScaleToFit,
                                                  true,0
                                                 );
-                        //Draw Gold bar
+                        //Draw EXP bar
                         GUI.DrawTexture(new Rect(screenPositionX, 
                                                  screenPositionY + iconOffset * 3, 
                                                  iconSizeX, iconSizeY),
@@ -72,8 +80,29 @@ using UnityEngine.SceneManagement;
                                                  ScaleMode.ScaleToFit,
                                                  true,0
                                                 );
+                        //Draw Wealth Text
+                        GUI.Label(new Rect(screenPositionX + iconOffset,
+                                           screenPositionY + iconOffset * 1,
+                                           iconSizeX,iconSizeY),
+                                           (": " + playersWealth),
+                                            textStyle
+                                           );
 
-               
+                        //Draw EXP Text
+                        GUI.Label(new Rect(screenPositionX + iconOffset,
+                                           screenPositionY + iconOffset * 2,
+                                           iconSizeX,iconSizeY),
+                                           (": " + playersEXP),
+                                            textStyle
+                                           );
+
+                        //Draw Mine Text
+                        GUI.Label(new Rect(screenPositionX + iconOffset,
+                                           screenPositionY + iconOffset * 3,
+                                           iconSizeX,iconSizeY),
+                                           (": " + numOfMine),
+                                            textStyle
+                                           );
 　　	        }
 
         //Method that lets the player take damage when hit by enemy

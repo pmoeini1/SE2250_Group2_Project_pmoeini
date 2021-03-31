@@ -33,7 +33,6 @@
 　　	float coolDown;
 　　	bool lookRight = true;
         bool custom = false;
-        int numOfMine = 0;
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
@@ -106,7 +105,7 @@
             }
             // MineAttack() when M key is pressed
             if (Input.GetKeyDown("m")){
-                if (numOfMine <= 10){
+                if (GameManager.numOfMine > 0){
                 MineAttack();
                 }
             }
@@ -132,9 +131,9 @@
         void MineAttack(){
             // Instantiate mine where player drops it
             Vector3 mineDrop = transform.position;
-            mineDrop -= new Vector3(0f, 0.5f, -1f);
+            mineDrop -= new Vector3(0.7f, 0.5f, -1f);
             Instantiate (mine, mineDrop, Quaternion.identity);
-            numOfMine ++;
+            GameManager.numOfMine --;
             
         }
 
@@ -145,18 +144,28 @@
                  if (GameManager.playersHealth < 5){
 			        GameManager.playersHealth++;
                 }
-			    Destroy(other.gameObject);
-                
+                GameManager.playersEXP += 50;
+			    Destroy(other.gameObject);  
 		    }
+
+             if (other.tag == "Mine Refill") {
+                 if (GameManager.numOfMine < 15){
+			        GameManager.numOfMine += 5;
+                }
+                GameManager.playersEXP += 50;
+			    Destroy(other.gameObject);  
+		    }
+
            //add player health when player collides with speed boost pickup
             if (other.tag == "Speed") {
 			  StartCoroutine(increaseSpeed(5f));
+                GameManager.playersEXP += 50;
 			    Destroy(other.gameObject);
 		    }
 
             //push player upwards when player collides with trampoline gameobject
             if (other.tag == "Trampoline"){
-            moveDirection.y = jumpHeight*1.5f;
+            moveDirection.y = jumpHeight* 1.25f;
             }
 
             if(other.tag == "Gold"){
