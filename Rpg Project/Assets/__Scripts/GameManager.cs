@@ -85,5 +85,6 @@ using UnityEngine.SceneManagement;
         //Restart method
 　　	void RestartScene(){
 　　		  SceneManager.LoadScene("Scene1");
+                
 　　	}
 　　}

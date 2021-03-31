@@ -4,7 +4,7 @@
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
         // points counter
-        public int points = 0;
+        public int points;
         // number of enemy collisions
         public int hitsTaken = 0;
         // particle system
@@ -37,6 +37,7 @@
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
+            points = 0;
 　　	}
 　　	
 　　	
@@ -181,7 +182,7 @@
 　　		yield return new WaitForSeconds(takenDamage);
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
-            
+            points = 0;
             hitsTaken++;
             walkSpeed += 1f;
             jumpHeight += 1f;
