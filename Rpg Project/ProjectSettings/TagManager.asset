@@ -11,6 +11,7 @@ TagManager:
   - Speed
   - Trampoline
   - Gold
+  - Mine Refill
   layers:
   - Default
   - TransparentFX
