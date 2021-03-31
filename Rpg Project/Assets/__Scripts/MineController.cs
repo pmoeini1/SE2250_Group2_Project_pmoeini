@@ -6,6 +6,6 @@ public class MineController : MonoBehaviour
 {
     public Controller2D controller2D;
     void FixedUpdate(){
-　　		Destroy (gameObject, 4.25f);
+　　		Destroy (gameObject, 9.25f);
 　　	}
 }

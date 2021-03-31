@@ -13,6 +13,8 @@ using UnityEngine.SceneManagement;
         public Texture playersWealthTexture;
         //Place to put the Texture for exp
         public Texture playersEXPTexture;
+        //Place to put the Texture for exp
+        public Texture playersMineTexture;
 　　	//X, Y location of the health bar 
 　　	public float screenPositionX;
 　　	public float screenPositionY;
@@ -59,6 +61,14 @@ using UnityEngine.SceneManagement;
                                                  screenPositionY + iconOffset * 2, 
                                                  iconSizeX, iconSizeY),
                                                  playersEXPTexture,
+                                                 ScaleMode.ScaleToFit,
+                                                 true,0
+                                                );
+                        //Draw Gold bar
+                        GUI.DrawTexture(new Rect(screenPositionX, 
+                                                 screenPositionY + iconOffset * 3, 
+                                                 iconSizeX, iconSizeY),
+                                                 playersMineTexture,
                                                  ScaleMode.ScaleToFit,
                                                  true,0
                                                 );
