@@ -48,7 +48,7 @@
 　　	
 　　	void Update () {
             Debug.Log("Points: " + points.ToString());
-            score.text = "Score: " + points.ToString();
+            score.text = "Level 1\nScore: " + points.ToString();
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
