@@ -106,7 +106,7 @@ using System.Collections;
 
 		void DropCoin(){
 			Vector3 coinDrop = transform.position;
-            coinDrop.z -= 0;
+            coinDrop.z = 0;
             Instantiate (coin, coinDrop, Quaternion.identity);
 		}
 　　}
