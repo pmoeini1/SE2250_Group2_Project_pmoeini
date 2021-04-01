@@ -1,5 +1,6 @@
 ﻿    using UnityEngine;
 　　using System.Collections;
+    using UnityEngine.UI;
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
@@ -18,7 +19,7 @@
 　　	//For changing the speed of the player 
 　　	public float walkSpeed = 5;
 　　	//For changing how high the player could jump
-　　	public float jumpHeight = 5;
+　　	public float jumpHeight = 6;
 　　	//How long the player is invulnerable for after taken damage
 　　	float takenDamage = 0.2f;
         //Refrence to the bullet prefab
@@ -35,17 +36,19 @@
 　　	float coolDown;
 　　	bool lookRight = true;
         bool custom = false;
+        public Text score;
+
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
             points = 0;
-            Debug.Log(points);
 　　	}
 　　	
 　　	
 　　	void Update () {
             Debug.Log("Points: " + points.ToString());
+            score.text = "Score: " + points.ToString();
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
@@ -85,7 +88,7 @@
 　　			}
 　　		}
             // allow player to fly if customized and in bounds
-            if (custom && InBounds()){
+            if (custom){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
 　　			}
@@ -204,9 +207,11 @@
 　　		yield return new WaitForSeconds(takenDamage);
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
+            attackRate += 0.05f;
+            takenDamage += 0.025f;
             hitsTaken++;
             walkSpeed  = 6f;
-            jumpHeight = 6f;
+            jumpHeight = 7f;
 　　	} 
 
 
@@ -235,14 +240,6 @@
         public void CreateDust(){
             //Plays dust animation
             dust.Play();
-        }
-
-        public bool InBounds(){
-            if (transform.position.y <= 8){
-                return true;
-            } else {
-                return false;
-            }
         }
 
         
