@@ -4,6 +4,7 @@
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
         
+        public GameManager gameManager;
         // points counter
         public int points;
         // number of enemy collisions
@@ -177,6 +178,12 @@
                 Destroy(other.gameObject);
                 points++;
             }
+
+             if(other.tag == "Enemy Bullet"){
+                gameManager.SendMessage("PlayerDamaged",1,SendMessageOptions.DontRequireReceiver);
+                gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
+                Destroy(other.gameObject);
+            }
         
 	    }
 
@@ -198,13 +205,13 @@
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
             hitsTaken++;
-            walkSpeed += 1f;
-            jumpHeight += 1f;
+            walkSpeed  = 6f;
+            jumpHeight = 6f;
 　　	} 
 
 
         IEnumerator increaseSpeed(float duration){
-            walkSpeed = 10;
+            walkSpeed = 8.5f;
             yield return new WaitForSeconds(duration);
             walkSpeed = 5;
         }

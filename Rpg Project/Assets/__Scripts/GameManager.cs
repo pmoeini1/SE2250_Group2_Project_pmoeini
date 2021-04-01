@@ -118,12 +118,11 @@ using UnityEngine.SceneManagement;
                                 playersHealth = 5;
 　　				RestartScene ();	
 　　			  }
-　　			}
+　　		}
 　　	}
 
         //Restart method
 　　	void RestartScene(){
 　　		  SceneManager.LoadScene("Scene1");
-                
 　　	}
 　　}
