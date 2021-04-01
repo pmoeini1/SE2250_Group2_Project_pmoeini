@@ -1,8 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-　　
-　　public class Enemy2D : MonoBehaviour {
-　　	public Controller2D player;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Flyer2D : MonoBehaviour
+{
+        public Controller2D player;
 　　	public GameManager gameManager;
 		public Rigidbody coin;
 
@@ -17,42 +19,33 @@ using System.Collections;
 　　	
 		public int damageValue = 1;
 
-　　	bool moveRight = true;
+　　	bool moveUp = true;
 　　
-　　	int enemyHealth = 1;
+　　	public int enemyHealth = 1;
 　　	
-　　	public bool basicEnemy;
-　　	public bool advancedEnemy;
 
 
 　　
 　　	void Awake(){
 			// set up boundaries for horizontal movement
-　　		startPos = transform.position.x;
+　　		startPos = transform.position.y;
 　　		endPos = startPos + unitsToMove;
-			// set up small enemy health
-　　		if (basicEnemy) {
-　　			enemyHealth = 2;		
-　　		}
-			// set up large enemy health
-　　		if (advancedEnemy) {
-　　			enemyHealth = 4;		
-　　		}
+		
 　　	}
 　　	
 　　	void Update(){
-					// move left and right within boundaries
-　　		        if (moveRight) {
-　　				GetComponent<Rigidbody>().position += Vector3.right * moveSpeed * Time.deltaTime;	
+					// move up and down within boundaries
+　　		        if (moveUp) {
+　　				GetComponent<Rigidbody>().position += Vector3.up * moveSpeed * Time.deltaTime;	
 　　				}
-　　				if (GetComponent<Rigidbody>().position.x >= endPos) {
-　　						moveRight = false;
+　　				if (GetComponent<Rigidbody>().position.y >= endPos) {
+　　						moveUp = false;
 　　				}
-　　				if (moveRight==false) {
-　　						GetComponent<Rigidbody>().position -= Vector3.right * moveSpeed * Time.deltaTime;	
+　　				if (moveUp==false) {
+　　						GetComponent<Rigidbody>().position -= Vector3.up * moveSpeed * Time.deltaTime;	
 　　				}
-　　				if (GetComponent<Rigidbody>().position.x <= startPos) {
-　　						moveRight = true;
+　　				if (GetComponent<Rigidbody>().position.y <= startPos) {
+　　						moveUp = true;
 　　				}
 　　		}
 　　	
@@ -119,4 +112,4 @@ using System.Collections;
 			Instantiate (coin, coinDrop + offsetV * 2 + offsetH, Quaternion.identity);
 			Instantiate (coin, coinDrop + offsetV * 2 - offsetH, Quaternion.identity);
 		}
-　　}
+}
