@@ -106,7 +106,17 @@ using System.Collections;
 
 		void DropCoin(){
 			Vector3 coinDrop = transform.position;
-            coinDrop.z = 0;
+			Vector3 offsetH = new Vector3(0.5f,0f,0f);
+			Vector3 offsetV = new Vector3(0f,0.5f,0f);
+            coinDrop.z = 0f;
             Instantiate (coin, coinDrop, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetH, Quaternion.identity);
+			Instantiate (coin, coinDrop - offsetH, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetH + offsetV, Quaternion.identity);
+			Instantiate (coin, coinDrop - offsetH + offsetV, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV * 2, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV * 2 + offsetH, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV * 2 - offsetH, Quaternion.identity);
 		}
 　　}
