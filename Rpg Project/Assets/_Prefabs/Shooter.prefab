@@ -77,6 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameManager: {fileID: 0}
+  coin: {fileID: 7900772758320589474, guid: c3eb6d1c12cdb5b4f85f88801b15a8d4, type: 3}
+  health: {fileID: 3896776985884033969, guid: 4f819ff95786ff9488c66092bd5ad35f, type: 3}
   damageValue: 1
   shooterHealth: 3
   lookRight: 0

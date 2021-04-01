@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Shooter : MonoBehaviour
 {   
     public Controller2D player;
-    
     public GameManager gameManager;
+    public Rigidbody coin;
+    public Rigidbody health;
     
     float coolDown;
 
@@ -59,6 +61,8 @@ public class Shooter : MonoBehaviour
 　　
 　　		if (shooterHealth <= 0) {
 　　			shooterHealth = 0;
+                DropCoin();
+                DropHealth();
 　　			Destroy(gameObject);
 　　		}
 　　	}
@@ -95,6 +99,33 @@ public class Shooter : MonoBehaviour
 　　		}
 　　	}
 
+    void DropHealth(){
+            Vector3 healthDrop = transform.position;
+            Vector3 offsetH = new Vector3 (0,1.5f,0);
+            healthDrop.z = 0f;
+            int chance = Random.Range(1,2);
+            if (chance == 1){
+            Instantiate(health, healthDrop + offsetH, Quaternion.identity);
+            }
+        }
 
+
+
+
+    void DropCoin(){
+			Vector3 coinDrop = transform.position;
+			Vector3 offsetH = new Vector3(0.5f,0f,0f);
+			Vector3 offsetV = new Vector3(0f,0.5f,0f);
+            coinDrop.z = 0f;
+            Instantiate (coin, coinDrop, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetH, Quaternion.identity);
+			Instantiate (coin, coinDrop - offsetH, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetH + offsetV, Quaternion.identity);
+			Instantiate (coin, coinDrop - offsetH + offsetV, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV * 2, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV * 2 + offsetH, Quaternion.identity);
+			Instantiate (coin, coinDrop + offsetV * 2 - offsetH, Quaternion.identity);
+		}
     
 }

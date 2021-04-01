@@ -149,7 +149,7 @@
         void OnTriggerEnter(Collider other){
             //adds player health when player collides with health pickup
 		    if (other.tag == "Health") {
-                 if (GameManager.playersHealth < 5){
+                 if (GameManager.playersHealth < 10){
 			        GameManager.playersHealth++;
                 }
                 GameManager.playersEXP += 50;
@@ -187,7 +187,12 @@
                 gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 Destroy(other.gameObject);
             }
-        
+
+            if(other.tag == "Diamond"){
+                GameManager.playersWealth+=10;
+                Destroy(other.gameObject);
+                points++;
+            }
 	    }
 
       

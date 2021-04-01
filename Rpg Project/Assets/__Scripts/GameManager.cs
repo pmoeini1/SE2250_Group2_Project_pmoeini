@@ -23,7 +23,7 @@ using UnityEngine.SceneManagement;
 　　	public int iconSizeX = 25;
 　　	public int iconSizeY = 25;
 　　	//How many lives the player has 
-　　	public static int playersHealth = 5;
+　　	public static int playersHealth = 10;
         public static int playersWealth = 0;
         public static int playersEXP = 0;
         public static int numOfMine = 10;
@@ -115,7 +115,7 @@ using UnityEngine.SceneManagement;
 　　			}
                         //Restart scene when player health = 0
 　　			if (playersHealth <= 0) {
-                                playersHealth = 5;
+                                playersHealth = 10;
 　　				RestartScene ();	
 　　			  }
 　　		}
