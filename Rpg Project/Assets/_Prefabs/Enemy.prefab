@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameManager: {fileID: 0}
+  coin: {fileID: 7900772758320589474, guid: c3eb6d1c12cdb5b4f85f88801b15a8d4, type: 3}
   unitsToMove: 5
   moveSpeed: 2
   damageValue: 1

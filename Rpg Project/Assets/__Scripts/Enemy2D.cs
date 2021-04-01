@@ -4,6 +4,8 @@ using System.Collections;
 　　public class Enemy2D : MonoBehaviour {
 　　	public Controller2D player;
 　　	public GameManager gameManager;
+		public Rigidbody coin;
+
 　　	
 　　	float startPos;
 　　	float endPos;
@@ -62,6 +64,7 @@ using System.Collections;
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
 			if (col.gameObject.CompareTag("Mine")){
+			DropCoin();
             Destroy(col.gameObject);
             Destroy(gameObject);
 			player.points += 3;
@@ -95,7 +98,15 @@ using System.Collections;
 　　
 　　		if (enemyHealth <= 0) {
 　　			enemyHealth = 0;
+				DropCoin();
 　　			Destroy(gameObject);
+				
 　　		}
 　　	}
+
+		void DropCoin(){
+			Vector3 coinDrop = transform.position;
+            coinDrop.z -= 0;
+            Instantiate (coin, coinDrop, Quaternion.identity);
+		}
 　　}
