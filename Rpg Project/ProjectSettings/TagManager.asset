@@ -12,6 +12,7 @@ TagManager:
   - Trampoline
   - Gold
   - Mine Refill
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX
