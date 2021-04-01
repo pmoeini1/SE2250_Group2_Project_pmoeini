@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-
+        //comment
     // Start is called before the first frame update
     void Start()
     {
