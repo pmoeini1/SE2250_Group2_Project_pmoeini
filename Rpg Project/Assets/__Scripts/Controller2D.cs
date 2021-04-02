@@ -37,7 +37,7 @@
 　　	bool lookRight = true;
         bool custom = false;
         public Text score;
-
+        int requiredEXP = 100;
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
@@ -47,6 +47,8 @@
 　　	
 　　	
 　　	void Update () {
+
+            
             Debug.Log("Points: " + points.ToString());
             score.text = "Level 1\nScore: " + points.ToString();
             //Transforms the scaling of the character 
@@ -118,9 +120,25 @@
             }
             
            
+
+            checklevelUp();
+           
 　　	}
 　　	
-　　	
+　　	void checklevelUp(){
+            if(GameManager.playersEXP >= requiredEXP){
+                        GameManager.playersEXP = 0;
+                        GameManager.maxHealth ++;
+                        GameManager.playersLV ++;
+                        attackRate -= 0.02f;
+                        GameManager.playersHealth = GameManager.maxHealth;
+                        requiredEXP += 100;
+                }
+        }
+
+
+
+
 　　	void BulletAttack(){
 　　		if (lookRight) {
 　　			// shoot right if facing right
@@ -149,7 +167,7 @@
         void OnTriggerEnter(Collider other){
             //adds player health when player collides with health pickup
 		    if (other.tag == "Health") {
-                 if (GameManager.playersHealth < 10){
+                 if (GameManager.playersHealth < GameManager.maxHealth){
 			        GameManager.playersHealth++;
                 }
                 GameManager.playersEXP += 50;
@@ -191,6 +209,7 @@
             if(other.tag == "Diamond"){
                 GameManager.playersWealth+=10;
                 Destroy(other.gameObject);
+                GameManager.playersEXP += 50;
                 points++;
             }
 	    }

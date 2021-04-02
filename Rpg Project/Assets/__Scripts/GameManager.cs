@@ -23,7 +23,9 @@ using UnityEngine.SceneManagement;
 　　	public int iconSizeX = 25;
 　　	public int iconSizeY = 25;
 　　	//How many lives the player has 
-　　	public static int playersHealth = 10;
+　　	public static int playersHealth = 3;
+        public static int maxHealth = 3;
+        public static int playersLV = 0;
         public static int playersWealth = 0;
         public static int playersEXP = 0;
         public static int numOfMine = 10;
@@ -103,6 +105,13 @@ using UnityEngine.SceneManagement;
                                            (": " + numOfMine),
                                             textStyle
                                            );
+                        //Draw LV Text
+                        GUI.Label(new Rect(screenPositionX,
+                                           screenPositionY + iconOffset * 4,
+                                           iconSizeX,iconSizeY),
+                                           ("Player LV: " + playersLV),
+                                            textStyle
+                                           );
 　　	        }
 
         //Method that lets the player take damage when hit by enemy
@@ -115,11 +124,12 @@ using UnityEngine.SceneManagement;
 　　			}
                         //Restart scene when player health = 0
 　　			if (playersHealth <= 0) {
-                                playersHealth = 10;
+                                playersHealth = maxHealth;
 　　				RestartScene ();	
 　　			  }
 　　		}
 　　	}
+
 
         //Restart method
 　　	void RestartScene(){
