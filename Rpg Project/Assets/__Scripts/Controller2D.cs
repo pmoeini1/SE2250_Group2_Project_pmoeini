@@ -102,6 +102,13 @@
 　　				BulletAttack ();	
 　　			}
 　　		}
+
+            if (Time.time >= coolDown) {
+　　			if (Input.GetKeyDown (KeyCode.E)){
+　　				TripleAttack ();	
+　　			}
+　　		}
+
             // Custom() when C key is pressed and player is not already customized
             if (Input.GetKeyDown("c") && !custom){
                 Custom();
@@ -153,6 +160,24 @@
 　　			coolDown = Time.time + attackRate;
 　　		}
 　　	}
+
+        void TripleAttack(){
+
+            if (lookRight) {
+　　			// shoot right if facing right
+　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
+　　			bPrefab.GetComponent<Rigidbody>().AddForce (Vector3.right * 300);
+　　			coolDown = Time.time + attackRate;
+　　				}
+　　		else {
+　　			// shoot left if facing left
+　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
+　　			bPrefab.GetComponent<Rigidbody>().AddForce (-Vector3.right * 300);
+　　			coolDown = Time.time + attackRate;
+　　		}
+        }
+
+
 
         void MineAttack(){
             // Instantiate mine where player drops it
