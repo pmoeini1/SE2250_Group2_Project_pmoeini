@@ -9,12 +9,16 @@ using UnityEngine.SceneManagement;
 　　	public Controller2D controller2D;
         //Place to put the Texture for health bar
 　　	public Texture playersHealthTexture;
+        //Place to put the Texture for health bar
+　　	public Texture playersShieldTexture;
         //Place to put the Texture for coins
         public Texture playersWealthTexture;
         //Place to put the Texture for exp
         public Texture playersEXPTexture;
         //Place to put the Texture for exp
         public Texture playersMineTexture;
+         //Place to put the Texture for exp
+        public Texture playersLVTexture;
 　　	//X, Y location of the health bar 
 　　	public float screenPositionX;
 　　	public float screenPositionY;
@@ -82,6 +86,16 @@ using UnityEngine.SceneManagement;
                                                  ScaleMode.ScaleToFit,
                                                  true,0
                                                 );
+                        
+                         //Draw EXP bar
+                        GUI.DrawTexture(new Rect(screenPositionX, 
+                                                 screenPositionY + iconOffset * 4, 
+                                                 iconSizeX, iconSizeY),
+                                                 playersLVTexture,
+                                                 ScaleMode.ScaleToFit,
+                                                 true,0
+                                                );
+
                         //Draw Wealth Text
                         GUI.Label(new Rect(screenPositionX + iconOffset,
                                            screenPositionY + iconOffset * 1,
@@ -106,10 +120,10 @@ using UnityEngine.SceneManagement;
                                             textStyle
                                            );
                         //Draw LV Text
-                        GUI.Label(new Rect(screenPositionX,
+                        GUI.Label(new Rect(screenPositionX + iconOffset,
                                            screenPositionY + iconOffset * 4,
                                            iconSizeX,iconSizeY),
-                                           ("Player LV: " + playersLV),
+                                           (": " + playersLV),
                                             textStyle
                                            );
 　　	        }

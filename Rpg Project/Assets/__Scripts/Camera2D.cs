@@ -8,7 +8,7 @@ public class Camera2D : MonoBehaviour {
 　　	public Transform player;
 　　
 　　	public float smoothRate = 0.5f;
-　　
+    
 　　	private Transform thisTransform;
 　　	private Vector2 velocity;
 　　

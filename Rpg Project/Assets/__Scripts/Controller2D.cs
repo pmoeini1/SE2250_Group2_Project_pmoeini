@@ -36,6 +36,7 @@
 　　	float coolDown;
 　　	bool lookRight = true;
         bool custom = false;
+        public int pieceCount = 6;
         public Text score;
         int requiredEXP = 100;
 　　	
@@ -162,19 +163,27 @@
 　　	}
 
         void TripleAttack(){
-
             if (lookRight) {
 　　			// shoot right if facing right
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
-　　			bPrefab.GetComponent<Rigidbody>().AddForce (Vector3.right * 300);
+　　			bPrefab.GetComponent<Rigidbody>().AddForce (new Vector3(1,0.25f,0) * 200);
+                Rigidbody bPrefab2 = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
+　　			bPrefab2.GetComponent<Rigidbody>().AddForce (Vector3.right * 200);
+                Rigidbody bPrefab3 = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
+　　			bPrefab3.GetComponent<Rigidbody>().AddForce (new Vector3(1,0.5f,0) * 200);
 　　			coolDown = Time.time + attackRate;
 　　				}
 　　		else {
 　　			// shoot left if facing left
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
-　　			bPrefab.GetComponent<Rigidbody>().AddForce (-Vector3.right * 300);
+　　			bPrefab.GetComponent<Rigidbody>().AddForce (-new Vector3(1,-0.25f,0) * 200);
+                Rigidbody bPrefab2 = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
+　　			bPrefab2.GetComponent<Rigidbody>().AddForce (-Vector3.right * 200);
+                Rigidbody bPrefab3 = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
+　　			bPrefab3.GetComponent<Rigidbody>().AddForce (-new Vector3(1,-0.5f,0) * 200);
 　　			coolDown = Time.time + attackRate;
 　　		}
+            
         }
 
 

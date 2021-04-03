@@ -101,9 +101,9 @@ public class Shooter : MonoBehaviour
 
     void DropHealth(){
             Vector3 healthDrop = transform.position;
-            Vector3 offsetH = new Vector3 (0,1.5f,0);
+            Vector3 offsetH = new Vector3 (0,1.7f,0);
             healthDrop.z = 0f;
-            int chance = Random.Range(1,2);
+            int chance = Random.Range(1,3);
             if (chance == 1){
             Instantiate(health, healthDrop + offsetH, Quaternion.identity);
             }
