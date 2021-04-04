@@ -50,15 +50,10 @@ public class Flyer2D : MonoBehaviour
 　　		}
 　　	
 　　	
-　　	
-
-        
+　　
         void OnTriggerEnter(Collider col){
 			// damage player if collides with enemy
-　　		if (col.gameObject.tag == "Player") {
-　　			gameManager.SendMessage("PlayerDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
-　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
-　　		}
+　　		
             if (col.gameObject.tag == "Mine") {
 　　			Destroy(gameObject);
 				DropCoin();
