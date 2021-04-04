@@ -25,14 +25,6 @@ public class FreezeProjectile : MonoBehaviour
         }
     }
 
-    
-    void OnTriggerEnter(Collider other){
-　　	    	
-            // handle collisions with walls
-            if (other.gameObject.tag == "Walls") {
-            Destroy(gameObject);
-            }
-　　	}
 
 
         // Destroy Bullet once out of screen

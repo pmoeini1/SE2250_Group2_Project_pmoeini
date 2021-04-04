@@ -36,6 +36,7 @@ using UnityEngine.SceneManagement;
 
         //Declare player as a GameObject
 　　	GameObject player;
+        
 　　	
         //Find the player object at the start of game
 　　	void Start(){

@@ -46,6 +46,7 @@ public class Shooter : MonoBehaviour
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
 			if (col.gameObject.CompareTag("Mine")){
+			DropCoin();
             Destroy(col.gameObject);
             Destroy(gameObject);
 			player.points += 3;
@@ -108,9 +109,6 @@ public class Shooter : MonoBehaviour
             Instantiate(health, healthDrop + offsetH, Quaternion.identity);
             }
         }
-
-
-
 
     void DropCoin(){
 			Vector3 coinDrop = transform.position;

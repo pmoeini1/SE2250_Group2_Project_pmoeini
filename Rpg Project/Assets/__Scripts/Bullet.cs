@@ -38,7 +38,7 @@ using UnityEngine;
 　　			other.gameObject.SendMessage("ChestDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
-　　		}
+　　		} 
             // handle collisions with walls
             if (other.gameObject.tag == "Walls") {
             Destroy(gameObject);

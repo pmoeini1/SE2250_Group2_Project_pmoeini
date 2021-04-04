@@ -39,6 +39,8 @@
         public int pieceCount = 6;
         public Text score;
         int requiredEXP = 100;
+        //The Sj
+        public GameObject playerShield;
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
@@ -121,31 +123,35 @@
                 custom = false;
             }
             // MineAttack() when M key is pressed
-            if (Input.GetKeyDown("m")){
+            if (Input.GetKeyDown("m") && characterController.isGrounded){
                 if (GameManager.numOfMine > 0){
                 MineAttack();
                 }
             }
             
-           
+            if (Input.GetKey(KeyCode.Tab)){
+                playerShield.SetActive(true);
+                
+            }
+            else
+            {
+                playerShield.SetActive(false);
+                
+            }
 
-            checklevelUp();
-           
-　　	}
-　　	
-　　	void checklevelUp(){
             if(GameManager.playersEXP >= requiredEXP){
                         GameManager.playersEXP = 0;
                         GameManager.maxHealth ++;
                         GameManager.playersLV ++;
                         attackRate -= 0.02f;
                         GameManager.playersHealth = GameManager.maxHealth;
-                        requiredEXP += 100;
+                        requiredEXP += 150;
                 }
-        }
-
-
-
+            
+           
+　　	}
+　　	
+　
 
 　　	void BulletAttack(){
 　　		if (lookRight) {
@@ -242,7 +248,7 @@
 
             if(other.tag == "Freeze Bullet"){
                 gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
-                StartCoroutine(decreaseSpeed(3f));
+                StartCoroutine(decreaseSpeed(5f));
                 Destroy(other.gameObject);
             }
 
@@ -291,7 +297,7 @@
             walkSpeed = 5;
         }
 
-
+       
         public void Custom() {
             // increase player size, player invulnerability, decrease speed
             player.localScale += new Vector3(0.5f, 0.5f, 0);

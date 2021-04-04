@@ -11,7 +11,7 @@ public class Flyer2D : MonoBehaviour
 　　	
 　　	float startPos;
 　　	float endPos;
-　　	float takenDamage = 0.2f;
+　　
 
 　　	public int unitsToMove = 5;
 　　	
@@ -50,50 +50,26 @@ public class Flyer2D : MonoBehaviour
 　　		}
 　　	
 　　	
-　　	void OnTriggerEnter(Collider col){
+　　	
+
+        
+        void OnTriggerEnter(Collider col){
 			// damage player if collides with enemy
 　　		if (col.gameObject.tag == "Player") {
 　　			gameManager.SendMessage("PlayerDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
-			if (col.gameObject.CompareTag("Mine")){
-			DropCoin();
-            Destroy(col.gameObject);
-            Destroy(gameObject);
-			player.points += 3;
-        	}
-　　	}
-
-        
-        public IEnumerator TakenDamage(){
-			// flash enemy if it takes damage
-		    GetComponent<Renderer>().enabled = false;
-		    yield return new WaitForSeconds(takenDamage);
-		    GetComponent<Renderer>().enabled = true;
-		    yield return new WaitForSeconds(takenDamage);
-		    GetComponent<Renderer>().enabled = false;
-		    yield return new WaitForSeconds(takenDamage);
-		    GetComponent<Renderer>().enabled = true;
-		    yield return new WaitForSeconds(takenDamage);
-		    GetComponent<Renderer>().enabled = false;
-		    yield return new WaitForSeconds(takenDamage);
-		    GetComponent<Renderer>().enabled = true;
-		    yield return new WaitForSeconds(takenDamage);
-				
-	    } 
-　　	
-　　	void EnemyDamaged(int damage){
-		player.points += 2;
-			// destroy enemy if enemyHealth is <=0
-　　		if (enemyHealth > 0) {
-　　			enemyHealth -= damage;		
-　　		}
-　　
-　　		if (enemyHealth <= 0) {
-　　			enemyHealth = 0;
-				DropCoin();
+            if (col.gameObject.tag == "Mine") {
 　　			Destroy(gameObject);
-				
+				DropCoin();
+　　		}
+			if (col.gameObject.tag == "Shield") {
+　　			Destroy(gameObject);
+				DropCoin();
+　　		}
+             if (col.gameObject.tag == "Bullet") {
+　　			Destroy(gameObject);
+                DropCoin();
 　　		}
 　　	}
 

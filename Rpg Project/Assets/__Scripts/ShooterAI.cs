@@ -67,6 +67,10 @@ public class ShooterAI : MonoBehaviour
 　　			Destroy(gameObject);
                 DropCoin();
 　　		}
+            if (col.gameObject.tag == "Shield") {
+　　			Destroy(gameObject);
+                DropCoin();
+　　		}
 　　	}
       
 
