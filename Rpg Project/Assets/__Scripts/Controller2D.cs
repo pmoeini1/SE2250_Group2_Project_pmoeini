@@ -240,6 +240,12 @@
                 Destroy(other.gameObject);
             }
 
+            if(other.tag == "Freeze Bullet"){
+                gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
+                StartCoroutine(decreaseSpeed(3f));
+                Destroy(other.gameObject);
+            }
+
             if(other.tag == "Diamond"){
                 GameManager.playersWealth+=10;
                 Destroy(other.gameObject);
@@ -278,6 +284,13 @@
             yield return new WaitForSeconds(duration);
             walkSpeed = 5;
         }
+
+         IEnumerator decreaseSpeed(float duration){
+            walkSpeed = 2.5f;
+            yield return new WaitForSeconds(duration);
+            walkSpeed = 5;
+        }
+
 
         public void Custom() {
             // increase player size, player invulnerability, decrease speed

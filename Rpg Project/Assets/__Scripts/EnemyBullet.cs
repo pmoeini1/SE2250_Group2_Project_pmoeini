@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
        public float lifeTime = 2.25f;
-        // handle collisions with enemies
+        // handle collisions with walls
 　　	void OnTriggerEnter(Collider other){
 　　	    	
             // handle collisions with walls
