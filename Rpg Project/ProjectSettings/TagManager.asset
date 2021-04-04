@@ -17,6 +17,7 @@ TagManager:
   - Chest
   - Freeze Bullet
   - Bullet
+  - Shield
   layers:
   - Default
   - TransparentFX
