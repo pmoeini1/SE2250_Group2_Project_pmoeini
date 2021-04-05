@@ -43,16 +43,19 @@
         public GameObject playerShield;
         // Decrements coin if shield is used
         int shieldCounter = 0;
+        public bool paused;
 
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
             points = 0;
+            paused = false;
 　　	}
 　　	
 　　	
 　　	void Update () {
+            
 
             score.text = "Level 1\nScore: " + points.ToString();
             //Transforms the scaling of the character 
@@ -118,6 +121,12 @@
                 Custom();
                 custom = true;
             }
+            if (Input.GetKeyDown("p") && !paused){
+                Pause();
+            }
+            if (Input.GetKey("r") && paused){
+                Resume();
+            }
             // UndoCustom() when U key is pressed and player is already customized
             if (Input.GetKeyDown("u") && custom){
                 UndoCustom();
@@ -153,12 +162,22 @@
            
 　　	}
 
+        void Pause(){
+            Time.timeScale = 0;
+            paused = true;
+        }
+
+        void Resume(){
+            Time.timeScale = 1f;
+            paused = false;
+        }
+
 
         void ShieldDecreaseCoin(){
             if (Input.GetKey(KeyCode.Tab)){
                 shieldCounter++;
             }
-            if (shieldCounter > 200){
+            if (shieldCounter > 100){
                 shieldCounter = 0;
                 if (GameManager.playersWealth > 0){
                     GameManager.playersWealth--;
