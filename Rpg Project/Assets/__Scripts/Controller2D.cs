@@ -41,6 +41,9 @@
         int requiredEXP = 100;
         //The Sj
         public GameObject playerShield;
+        // Decrements coin if shield is used
+        int shieldCounter = 0;
+
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
@@ -128,7 +131,7 @@
             }
             
             if (Input.GetKey(KeyCode.Tab)){
-                playerShield.SetActive(true);
+                playerShield.SetActive(true);                
                 
             }
             else
@@ -144,12 +147,25 @@
                         attackRate -= 0.02f;
                         GameManager.playersHealth = GameManager.maxHealth;
                         requiredEXP += 150;
-                }
-            
+            }
+
+            ShieldDecreaseCoin();
            
 　　	}
-　　	
-　
+
+
+        void ShieldDecreaseCoin(){
+            if (Input.GetKey(KeyCode.Tab)){
+                shieldCounter++;
+            }
+            if (shieldCounter > 200){
+                shieldCounter = 0;
+                if (GameManager.playersWealth > 0){
+                    GameManager.playersWealth--;
+                }
+            }
+                
+        }
 
 　　	void BulletAttack(){
 　　		if (lookRight) {
