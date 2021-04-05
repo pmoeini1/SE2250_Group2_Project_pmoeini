@@ -54,7 +54,6 @@ public class Shooter : MonoBehaviour
 　　	}
 
     void EnemyDamaged(int damage){
-		player.points += 2;
 			// destroy enemy if shooterHealth is <=0
 　　		if (shooterHealth > 0) {
 　　			shooterHealth -= damage;		
