@@ -4,7 +4,8 @@
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
-        
+
+        public GameObject pauseMenu;    
         public GameManager gameManager;
         // points counter
         public int points;
@@ -37,7 +38,6 @@
 　　	bool lookRight = true;
         bool custom = false;
         public int pieceCount = 6;
-        public Text score;
         int requiredEXP = 100;
         //The Sj
         public GameObject playerShield;
@@ -51,13 +51,11 @@
             custom = false;
             points = 0;
             paused = false;
+            pauseMenu.SetActive(false);
 　　	}
 　　	
 　　	
 　　	void Update () {
-            
-
-            score.text = "Level 1\nScore: " + points.ToString();
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
@@ -162,12 +160,14 @@
            
 　　	}
 
-        void Pause(){
+        public void Pause(){
+            pauseMenu.SetActive(true);
             Time.timeScale = 0;
             paused = true;
         }
 
-        void Resume(){
+        public void Resume(){
+            pauseMenu.SetActive(false);
             Time.timeScale = 1f;
             paused = false;
         }
@@ -288,7 +288,7 @@
             if(other.tag == "Diamond"){
                 GameManager.playersWealth+=10;
                 Destroy(other.gameObject);
-                GameManager.playersEXP += 50;
+                GameManager.playersEXP += 70;
                 points++;
             }
 	    }
