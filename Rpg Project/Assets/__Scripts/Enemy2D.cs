@@ -64,7 +64,6 @@ using System.Collections;
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
 			if (col.gameObject.CompareTag("Mine")){
-			GameManager.playersEXP += 90;
 			DropCoin();
             Destroy(col.gameObject);
             Destroy(gameObject);
