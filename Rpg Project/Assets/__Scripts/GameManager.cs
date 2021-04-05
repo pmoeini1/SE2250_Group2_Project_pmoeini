@@ -9,8 +9,6 @@ using UnityEngine.SceneManagement;
 　　	public Controller2D controller2D;
         //Place to put the Texture for health bar
 　　	public Texture playersHealthTexture;
-        //Place to put the Texture for health bar
-　　	public Texture playersShieldTexture;
         //Place to put the Texture for coins
         public Texture playersWealthTexture;
         //Place to put the Texture for exp
@@ -33,15 +31,19 @@ using UnityEngine.SceneManagement;
         public static int playersWealth = 0;
         public static int playersEXP = 0;
         public static int numOfMine = 10;
+        public string levelName;
 
         //Declare player as a GameObject
 　　	GameObject player;
+        
         
 　　	
         //Find the player object at the start of game
 　　	void Start(){
 　　		player = GameObject.FindGameObjectWithTag("Player");
 　　	}
+
+        
 　　
 　　	
 　　	void OnGUI(){
@@ -127,6 +129,13 @@ using UnityEngine.SceneManagement;
                                            (": " + playersLV),
                                             textStyle
                                            );
+                        //Draw Level Text
+                        GUI.Label(new Rect(screenPositionX,
+                                           screenPositionY + iconOffset * 5,
+                                           iconSizeX,iconSizeY),
+                                           ("Level: " + levelName),
+                                            textStyle
+                                           );
 　　	        }
 
         //Method that lets the player take damage when hit by enemy
@@ -140,6 +149,7 @@ using UnityEngine.SceneManagement;
                         //Restart scene when player health = 0
 　　			if (playersHealth <= 0) {
                                 playersHealth = maxHealth;
+                                transform.position = Vector3.zero;
 　　				RestartScene ();	
 　　			  }
 　　		}
@@ -148,6 +158,6 @@ using UnityEngine.SceneManagement;
 
         //Restart method
 　　	void RestartScene(){
-　　		  SceneManager.LoadScene("Scene1");
+　　		  SceneManager.LoadScene(levelName);
 　　	}
 　　}

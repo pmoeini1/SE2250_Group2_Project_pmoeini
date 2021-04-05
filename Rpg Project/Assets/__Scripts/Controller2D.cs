@@ -1,10 +1,12 @@
 ﻿    using UnityEngine;
 　　using System.Collections;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
-        
+
+        public GameObject pauseMenu;    
         public GameManager gameManager;
         // points counter
         public int points;
@@ -37,23 +39,24 @@
 　　	bool lookRight = true;
         bool custom = false;
         public int pieceCount = 6;
-        public Text score;
         int requiredEXP = 100;
         //The Sj
         public GameObject playerShield;
+        // Decrements coin if shield is used
+        int shieldCounter = 0;
+        public bool paused;
+
 　　	
 　　	void Start () {
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
             points = 0;
+            paused = false;
+            pauseMenu.SetActive(false);
 　　	}
 　　	
 　　	
 　　	void Update () {
-
-            
-            Debug.Log("Points: " + points.ToString());
-            score.text = "Level 1\nScore: " + points.ToString();
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
@@ -117,6 +120,12 @@
                 Custom();
                 custom = true;
             }
+            if (Input.GetKeyDown("p") && !paused){
+                Pause();
+            }
+            if (Input.GetKey("r") && paused){
+                Resume();
+            }
             // UndoCustom() when U key is pressed and player is already customized
             if (Input.GetKeyDown("u") && custom){
                 UndoCustom();
@@ -130,8 +139,10 @@
             }
             
             if (Input.GetKey(KeyCode.Tab)){
-                playerShield.SetActive(true);
-                
+                if (GameManager.playersWealth >= 5){
+                    playerShield.SetActive(true); 
+                    GameManager.playersWealth -= 5;
+                }
             }
             else
             {
@@ -146,12 +157,48 @@
                         attackRate -= 0.02f;
                         GameManager.playersHealth = GameManager.maxHealth;
                         requiredEXP += 150;
-                }
-            
+            }
+
+            ShieldDecreaseCoin();
            
 　　	}
-　　	
-　
+
+        public void Pause(){
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            paused = true;
+        }
+
+        public void Resume(){
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+            paused = false;
+        }
+
+        public void ChangeScene(){
+            string otherScene;
+            Scene s = SceneManager.GetActiveScene();
+            if (s.name == "2"){
+                otherScene = "1";
+            } else {
+                otherScene = "2";
+            }
+            SceneManager.LoadScene(otherScene);
+            Resume();
+        }
+        
+        void ShieldDecreaseCoin(){
+            if (Input.GetKey(KeyCode.Tab)){
+                shieldCounter++;
+            }
+            if (shieldCounter > 50){
+                shieldCounter = 0;
+                if (GameManager.playersWealth > 0){
+                    GameManager.playersWealth--;
+                }
+            }
+                
+        }
 
 　　	void BulletAttack(){
 　　		if (lookRight) {
@@ -255,7 +302,7 @@
             if(other.tag == "Diamond"){
                 GameManager.playersWealth+=10;
                 Destroy(other.gameObject);
-                GameManager.playersEXP += 50;
+                GameManager.playersEXP += 70;
                 points++;
             }
 	    }

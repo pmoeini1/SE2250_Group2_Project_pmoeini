@@ -26,14 +26,14 @@ using UnityEngine;
         // handle collisions with enemies
 　　	void OnTriggerEnter(Collider other){
 　　		if (other.gameObject.tag == "Enemy") {
-                GameManager.playersEXP += 20;
+                GameManager.playersEXP += 100;
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("EnemyDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
 　　		}
             if (other.gameObject.tag == "Chest") {
-                GameManager.playersEXP += 50;
+                GameManager.playersEXP += 80;
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("ChestDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
