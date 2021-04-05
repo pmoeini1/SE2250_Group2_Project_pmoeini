@@ -1,6 +1,7 @@
 ﻿    using UnityEngine;
 　　using System.Collections;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
@@ -172,6 +173,17 @@
             paused = false;
         }
 
+        public void ChangeScene(){
+            string otherScene;
+            Scene s = SceneManager.GetActiveScene();
+            if (s.name == "2"){
+                otherScene = "1";
+            } else {
+                otherScene = "2";
+            }
+            SceneManager.LoadScene(otherScene);
+            Resume();
+        }
 
         void ShieldDecreaseCoin(){
             if (Input.GetKey(KeyCode.Tab)){

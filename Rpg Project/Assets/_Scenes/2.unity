@@ -3831,6 +3831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465b15ae866804542b69d23e30e56be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
   gameManager: {fileID: 1127967239}
   points: 0
   hitsTaken: 0
@@ -3843,8 +3844,8 @@ MonoBehaviour:
   mine: {fileID: 6757800742181931341, guid: 257d8562fa9327a4b9360735b0c8ccfc, type: 3}
   player: {fileID: 485049382}
   pieceCount: 6
-  score: {fileID: 1399407343}
   playerShield: {fileID: 1648644964}
+  paused: 0
 --- !u!4 &485049382
 Transform:
   m_ObjectHideFlags: 0
