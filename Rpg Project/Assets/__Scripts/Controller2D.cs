@@ -185,6 +185,11 @@
             Resume();
         }
 
+        public void LoadLevelOne(){
+            SceneManager.LoadScene("1");
+            Resume();
+        }
+
         void ShieldDecreaseCoin(){
             if (Input.GetKey(KeyCode.Tab)){
                 shieldCounter++;
