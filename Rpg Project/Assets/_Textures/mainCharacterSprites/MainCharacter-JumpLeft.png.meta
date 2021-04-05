@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 139647194899440f3acf52d38be8da71
+guid: f08ed800db16d4d87897d34c9c0f1b75
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1371025051077211266
-    second: MainCharacter-Fall_0
+      213: -5536093601407964731
+    second: MainCharacter-JumpLeft_0
   - first:
-      213: -8845093284063346118
-    second: MainCharacter-Fall_1
+      213: -6110193429891600211
+    second: MainCharacter-JumpLeft_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +53,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,13 +93,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainCharacter-Fall_0
+      name: MainCharacter-JumpLeft_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 45
-        width: 55
-        height: 104
+        x: 70
+        y: 40
+        width: 41
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,20 +107,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7b8164eaf329fce0800000000000000
-      internalID: -1371025051077211266
+      spriteID: 5c9e3c47338db23b0800000000000000
+      internalID: -5536093601407964731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainCharacter-Fall_1
+      name: MainCharacter-JumpLeft_1
       rect:
         serializedVersion: 2
-        x: 191
-        y: 45
-        width: 52
-        height: 103
+        x: 220
+        y: 40
+        width: 46
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a32063e758aef3580800000000000000
-      internalID: -8845093284063346118
+      spriteID: da0b26ed27b343ba0800000000000000
+      internalID: -6110193429891600211
       vertices: []
       indices: 
       edges: []
