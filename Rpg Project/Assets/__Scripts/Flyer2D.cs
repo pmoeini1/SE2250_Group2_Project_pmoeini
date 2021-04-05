@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Flyer2D : MonoBehaviour
 {
-        public Controller2D player;
-　　	public GameManager gameManager;
 		public Rigidbody coin;
 
 　　	

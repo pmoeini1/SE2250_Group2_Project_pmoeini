@@ -24,12 +24,7 @@ public class Shooter : MonoBehaviour
 
     public Rigidbody shooterBulletPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void Update(){
         // BulletAttack() when F key is pressed
