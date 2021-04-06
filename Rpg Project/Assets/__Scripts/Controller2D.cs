@@ -191,7 +191,7 @@
             if (Input.GetKey(KeyCode.Tab)){
                 shieldCounter++;
             }
-            if (shieldCounter > 50){
+            if (shieldCounter > 100){
                 shieldCounter = 0;
                 if (GameManager.playersWealth > 0){
                     GameManager.playersWealth--;
