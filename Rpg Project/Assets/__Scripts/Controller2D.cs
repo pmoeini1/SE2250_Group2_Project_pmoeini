@@ -45,6 +45,7 @@
         // Decrements coin if shield is used
         int shieldCounter = 0;
         public bool paused;
+        public bool shieldOn;
 
 　　	
 　　	void Start () {
@@ -53,6 +54,7 @@
             points = 0;
             paused = false;
             pauseMenu.SetActive(false);
+            shieldOn = false;
 　　	}
 　　	
 　　	
@@ -139,13 +141,15 @@
             }
             
             if (Input.GetKey(KeyCode.Tab)){
-                if (GameManager.playersWealth >= 1){
+                if (GameManager.playersWealth >= 1 && !shieldOn){
+                    shieldOn = true;
                     playerShield.SetActive(true); 
-                    GameManager.playersWealth -= 1;
+                    GameManager.playersWealth--;
                 }
             }
             else
             {
+                shieldOn = false;
                 playerShield.SetActive(false);
                 
             }
@@ -191,7 +195,7 @@
             if (Input.GetKey(KeyCode.Tab)){
                 shieldCounter++;
             }
-            if (shieldCounter > 100){
+            if (shieldCounter > 1000){
                 shieldCounter = 0;
                 if (GameManager.playersWealth > 0){
                     GameManager.playersWealth--;
