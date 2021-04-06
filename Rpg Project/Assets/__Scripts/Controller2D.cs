@@ -199,8 +199,12 @@
             }
             if (shieldCounter > 100){
                 shieldCounter = 0;
-                if (GameManager.playersWealth > 0){
-                    GameManager.playersWealth-= 3;
+                if (GameManager.playersWealth >= 3){
+                    GameManager.playersWealth -= 3;
+                } else if (GameManager.playersWealth >= 2){
+                    GameManager.playersWealth -= 2;
+                } else if (GameManager.playersWealth >= 1){
+                    GameManager.playersWealth -= 1;
                 }
             }
                 
