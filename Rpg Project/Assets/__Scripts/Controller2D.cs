@@ -154,6 +154,8 @@
                 
             }
 
+        
+
             if(GameManager.playersEXP >= requiredEXP){
                         GameManager.playersEXP = 0;
                         GameManager.maxHealth ++;

@@ -18,6 +18,7 @@ TagManager:
   - Freeze Bullet
   - Bullet
   - Shield
+  - Gun
   layers:
   - Default
   - TransparentFX
