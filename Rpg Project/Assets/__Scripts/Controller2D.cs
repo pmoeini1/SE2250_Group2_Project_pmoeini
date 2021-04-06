@@ -139,9 +139,9 @@
             }
             
             if (Input.GetKey(KeyCode.Tab)){
-                if (GameManager.playersWealth >= 5){
+                if (GameManager.playersWealth >= 1){
                     playerShield.SetActive(true); 
-                    GameManager.playersWealth -= 5;
+                    GameManager.playersWealth -= 1;
                 }
             }
             else
@@ -156,7 +156,7 @@
                         GameManager.playersLV ++;
                         attackRate -= 0.02f;
                         GameManager.playersHealth = GameManager.maxHealth;
-                        requiredEXP += 150;
+                        requiredEXP += 300;
             }
 
             ShieldDecreaseCoin();
