@@ -141,10 +141,10 @@
             }
             
             if (Input.GetKey(KeyCode.Tab)){
-                if (GameManager.playersWealth >= 1 && !shieldOn){
+                if (GameManager.playersWealth >= 5 && !shieldOn){
                     shieldOn = true;
                     playerShield.SetActive(true); 
-                    GameManager.playersWealth--;
+                    GameManager.playersWealth-= 5;
                 }
             }
             else
@@ -195,10 +195,10 @@
             if (Input.GetKey(KeyCode.Tab)){
                 shieldCounter++;
             }
-            if (shieldCounter > 1000){
+            if (shieldCounter > 100){
                 shieldCounter = 0;
                 if (GameManager.playersWealth > 0){
-                    GameManager.playersWealth--;
+                    GameManager.playersWealth-= 3;
                 }
             }
                 
