@@ -77,9 +77,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameManager: {fileID: 0}
+  coin: {fileID: 0}
   unitsToMove: 0
   moveSpeed: 0
-  damageValue: 10
+  damageValue: 100
   basicEnemy: 1
   advancedEnemy: 0
 --- !u!212 &3272264553888452486
