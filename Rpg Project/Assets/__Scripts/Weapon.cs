@@ -20,8 +20,6 @@ public class Weapon : MonoBehaviour
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0,0, angle);
-
-        
         HandleShooting(aimDirection, angle);
     }
 
@@ -30,7 +28,7 @@ public class Weapon : MonoBehaviour
 
     private void HandleShooting(Vector3 direction, float rotationZ){
         if(timeBtwShots <= 0){
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("t")) {
             GameObject b = Instantiate(bullet) as GameObject;
             b.transform.position = aimTransform.transform.position;
             b.transform.rotation = Quaternion.Euler(0,0,rotationZ);
