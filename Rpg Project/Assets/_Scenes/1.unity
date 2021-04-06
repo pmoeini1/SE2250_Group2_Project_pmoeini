@@ -21776,6 +21776,7 @@ MonoBehaviour:
   playerShield: {fileID: 1615824359}
   paused: 0
   shieldOn: 0
+  turret: {fileID: 1338865507}
 --- !u!4 &1876556455
 Transform:
   m_ObjectHideFlags: 0

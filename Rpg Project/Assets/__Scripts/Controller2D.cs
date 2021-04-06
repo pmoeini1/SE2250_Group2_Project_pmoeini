@@ -46,6 +46,8 @@
         int shieldCounter = 0;
         public bool paused;
         public bool shieldOn;
+        public GameObject turret;
+        
 
 　　	
 　　	void Start () {
@@ -55,6 +57,8 @@
             paused = false;
             pauseMenu.SetActive(false);
             shieldOn = false;
+            turret.SetActive(false);
+
 　　	}
 　　	
 　　	
@@ -166,6 +170,14 @@
             }
 
             ShieldDecreaseCoin();
+
+            if (!custom){
+                turret.SetActive(false);
+            }
+
+            if (custom){
+                turret.SetActive(true);
+            }
            
 　　	}
 
