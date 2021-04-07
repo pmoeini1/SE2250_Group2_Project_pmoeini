@@ -29,7 +29,6 @@ public class ShooterAI : MonoBehaviour
     {
         // find player
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
         timeBtwShots = startTimeBtwShots;
     }
 
