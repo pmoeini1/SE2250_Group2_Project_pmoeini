@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class ShooterAI : MonoBehaviour
 {   
+    // get player script
     public Controller2D player1;
+    // access GameManager
 　　public GameManager gameManager;
+    // get shooter speed
     public float speed;
+    // set up movement boundaries for drone shooter
     public float stoppingDistance;
     public float retreatDistance;
+    // set damage that drone shooer creates
     public int damageValue = 1;
+    // set up time between drone shots
     private float timeBtwShots;
     public float startTimeBtwShots;
+    // get coin prefab
     public Rigidbody coin;
-  
-    
-
+    // get drone bullet prefab
     public GameObject projectile;
-
+    // get player
     public Transform player;
 
     void Start()
     {
+        // find player
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeBtwShots = startTimeBtwShots;
@@ -30,6 +36,7 @@ public class ShooterAI : MonoBehaviour
     
     void Update()
     {
+        // chase and shoot at player if in range
         if(Vector2.Distance(transform.position, player.position) > stoppingDistance){
 
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -60,13 +67,16 @@ public class ShooterAI : MonoBehaviour
 　　			gameManager.SendMessage("PlayerDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
+            // destroy drone shooter if it hits wall
             if (col.gameObject.tag == "Walls") {
 　　			Destroy(gameObject);
 　　		}
+            // destroy drone shooter if it hits bullet
              if (col.gameObject.tag == "Bullet") {
 　　			Destroy(gameObject);
                 DropCoin();
 　　		}
+            // destroy drone shooter if it hits shield
             if (col.gameObject.tag == "Shield") {
 　　			Destroy(gameObject);
                 DropCoin();
@@ -75,10 +85,13 @@ public class ShooterAI : MonoBehaviour
       
 
         void DropCoin(){
+            // drop coins at current position
 			Vector3 coinDrop = transform.position;
 			Vector3 offsetH = new Vector3(0.5f,0f,0f);
 			Vector3 offsetV = new Vector3(0f,0.5f,0f);
+            // ensure coins are in same plane as player
             coinDrop.z = 0f;
+            // instantiate coins, some with offsets
             Instantiate (coin, coinDrop, Quaternion.identity);
 			Instantiate (coin, coinDrop + offsetH + offsetV, Quaternion.identity);
 			Instantiate (coin, coinDrop - offsetH + offsetV, Quaternion.identity);

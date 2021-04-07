@@ -5,17 +5,23 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    // get turret's transform
     public Transform aimTransform;
+    // get bullet brefab
     public GameObject bullet;
+    // set up time in between shots
     private float timeBtwShots;
     public float startTimeBtwShots;
+    // set bullet speed
     public float bulletSpeed = 10.0f;
 
     private void Awake(){
+        // set up turret transform
         aimTransform = GameObject.FindGameObjectWithTag("Gun").GetComponent<Transform>();
     }
 
     private void Update() {
+        // aim towards where mouse is pointing
         Vector3 mousePosition = GetMouseWorldPosition();
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
@@ -27,6 +33,7 @@ public class Weapon : MonoBehaviour
     
 
     private void HandleShooting(Vector3 direction, float rotationZ){
+        // shoots if mouse is clicked or T key is pressed
         if(timeBtwShots <= 0){
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("t")) {
             GameObject b = Instantiate(bullet) as GameObject;
@@ -42,10 +49,12 @@ public class Weapon : MonoBehaviour
     }
 
     public static Vector3 GetMouseWorldPosition() {
+        // gets position of mouse, sets z = 0 to be in plane of player
         Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
         vec.z = 0f;
         return vec;
     }
+    // overload GetMouseWorldPositionWithZ() function
     public static Vector3 GetMouseWorldPositionWithZ() {
         return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
     }
