@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6341327058487606207}
   - component: {fileID: 6341327058487606206}
   m_Layer: 0
-  m_Name: Smart Shooter
+  m_Name: Enemy Drone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.4211607, y: 1.5155557, z: 1}
-  m_Center: {x: -0.022557471, y: 0.048332836, z: 0}
+  m_Size: {x: 2.2089114, y: 1.5155557, z: 1}
+  m_Center: {x: -0.004189594, y: 0.048332836, z: 0}
 --- !u!114 &6341327058487606205
 MonoBehaviour:
   m_ObjectHideFlags: 0
