@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    // set up how much damage shield creates
     int damageValue = 3;
-
+    
     void OnTriggerEnter(Collider other){
+            // damage enemy on collision
 　　		if (other.gameObject.tag == "Enemy") {
                 GameManager.playersEXP += 20;
 　　			other.gameObject.SendMessage("EnemyDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
 　　		}
+            // damage chest on collision
             if (other.gameObject.tag == "Chest") {
                 GameManager.playersEXP += 50;
 　　			other.gameObject.SendMessage("ChestDamaged",damageValue,SendMessageOptions.DontRequireReceiver);

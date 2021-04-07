@@ -4,14 +4,13 @@ using UnityEngine;
 using System.Collections;
 　　
 　　public class MovingPlatform : MonoBehaviour {
-　　	
+　　	// boundaries for platform movement
 　　	float startPos;
 　　	float endPos;
-　　
 　　	public int unitsToMove = 5;
-　　
+        // set up speed of platform movement
 　　	public int moveSpeed = 2;
-　　
+        // determine if platform is moving right or left
 　　	bool moveRight = true;
 　　	
         // set up limits for platform movement

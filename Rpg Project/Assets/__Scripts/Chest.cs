@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    public Controller2D player;
-　　public GameManager gameManager;
-	public Rigidbody coin;
-    public Rigidbody health;
-    public Rigidbody diamond;
-    float takenDamage = 0.2f;
 
+	// access GameManager
+　　public GameManager gameManager;
+	// get coin prefab
+	public Rigidbody coin;
+	// get health prefab
+    public Rigidbody health;
+	// get diamond prefab
+    public Rigidbody diamond;
+	// amount of damage taken on bullet collision
+    float takenDamage = 0.2f;
+	// number of health points for chest
     public int chestHitPoint = 2;
 
     public IEnumerator TakenDamage(){
@@ -31,12 +36,11 @@ public class Chest : MonoBehaviour
 	    }
 
         void ChestDamaged(int damage){
-		player.points += 2;
-			
+			// decrement chest health points on bullet collision
 　　		if (chestHitPoint > 0) {
 　　			chestHitPoint -= damage;		
 　　		}
-　　
+			// destroy chest and drop loot
 　　		if (chestHitPoint <= 0) {
 　　			chestHitPoint = 0;
 				DropLoot();
@@ -48,9 +52,11 @@ public class Chest : MonoBehaviour
         
 
         void DropLoot(){
+			// drop coin prefabs around where chest was destroyed
 			Vector3 coinDrop = transform.position;
 			Vector3 offsetH = new Vector3(1f,0f,0f);
 			Vector3 offsetV = new Vector3(0f,1f,0f);
+			// ensure coins are dropped in same plane as player
             coinDrop.z = 0f;
             Instantiate (health, coinDrop, Quaternion.identity);
 			Instantiate (diamond, coinDrop + offsetH, Quaternion.identity);

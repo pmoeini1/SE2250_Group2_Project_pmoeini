@@ -23,8 +23,8 @@ using UnityEngine;
         // set value of damage
 　　	int damageValue = 1;
 　　
-        // handle collisions with enemies
 　　	void OnTriggerEnter(Collider other){
+        // damage enemy on collision
 　　		if (other.gameObject.tag == "Enemy") {
                 GameManager.playersEXP += 100;
 　　			Destroy(gameObject);
@@ -32,6 +32,7 @@ using UnityEngine;
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
 　　		}
+            // damage chest on collision 
             if (other.gameObject.tag == "Chest") {
                 GameManager.playersEXP += 80;
 　　			Destroy(gameObject);

@@ -44,7 +44,6 @@ public class Shooter : MonoBehaviour
 			DropCoin();
             Destroy(col.gameObject);
             Destroy(gameObject);
-			player.points += 3;
         	}
 　　	}
 

@@ -5,11 +5,10 @@
     
 　　
 　　public class Controller2D : MonoBehaviour, IController2D {
-
-        public GameObject pauseMenu;    
+        // get UI of pause menu
+        public GameObject pauseMenu;   
+        // access GameManager 
         public GameManager gameManager;
-        // points counter
-        public int points;
         // number of enemy collisions
         public int hitsTaken = 0;
         // particle system
@@ -32,28 +31,36 @@
         public Transform player;
         //the direction the player is moving toward
 　　	Vector3 moveDirection = Vector3.zero;
+        // set a float for horizontal movement
 　　	float horizontal = 0;
         //how fast the player attacks
 　　	float attackRate = 0.5f;
+        // how long in between attacks player can attack
 　　	float coolDown;
+        // boolean determins which way player looks
 　　	bool lookRight = true;
+        // boolean determines if player is customized
         bool custom = false;
         public int pieceCount = 6;
+        // amount of EXP needed to level up initially
         int requiredEXP = 100;
-        //The Sj
+        //The player's shield
         public GameObject playerShield;
         // Decrements coin if shield is used
         int shieldCounter = 0;
+        // boolean determines if game is paused
         public bool paused;
+        // boolean determines if shield is used currently
         public bool shieldOn;
+        // get turret of player
         public GameObject turret;
         
 
 　　	
 　　	void Start () {
+        // get character controller and set all booleans to false
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
-            points = 0;
             paused = false;
             pauseMenu.SetActive(false);
             shieldOn = false;
@@ -143,7 +150,7 @@
                 MineAttack();
                 }
             }
-            
+            // turn on player's shield in exchange for coins
             if (Input.GetKey(KeyCode.Tab)){
                 if (GameManager.playersWealth >= 5 && !shieldOn){
                     shieldOn = true;
@@ -151,15 +158,15 @@
                     GameManager.playersWealth-= 5;
                 }
             }
+            // turn off player shield if tab key is not held
             else
             {
                 shieldOn = false;
                 playerShield.SetActive(false);
                 
             }
-
         
-
+            // handle level up with EXP
             if(GameManager.playersEXP >= requiredEXP){
                         GameManager.playersEXP = 0;
                         GameManager.maxHealth ++;
@@ -168,9 +175,9 @@
                         GameManager.playersHealth = GameManager.maxHealth;
                         requiredEXP += 300;
             }
-
+            // decrease coins if shield is used
             ShieldDecreaseCoin();
-
+            // activate turret if customized, else deactivate
             if (!custom){
                 turret.SetActive(false);
             }
@@ -180,19 +187,19 @@
             }
            
 　　	}
-
+        // pause game
         public void Pause(){
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
             paused = true;
         }
-
+        // resume game
         public void Resume(){
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
             paused = false;
         }
-
+        // change scene (for pause menu button)
         public void ChangeScene(){
             string otherScene;
             Scene s = SceneManager.GetActiveScene();
@@ -204,8 +211,8 @@
             SceneManager.LoadScene(otherScene);
             Resume();
         }
-        
-        void ShieldDecreaseCoin(){
+        // decrement coin as shield is being used
+        public void ShieldDecreaseCoin(){
             if (Input.GetKey(KeyCode.Tab)){
                 shieldCounter++;
             }
@@ -221,8 +228,8 @@
             }
                 
         }
-
-　　	void BulletAttack(){
+        // shoot bullet with F key
+　　	public void BulletAttack(){
 　　		if (lookRight) {
 　　			// shoot right if facing right
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
@@ -236,8 +243,8 @@
 　　			coolDown = Time.time + attackRate;
 　　		}
 　　	}
-
-        void TripleAttack(){
+        // triple shoot
+        public void TripleAttack(){
             if (lookRight) {
 　　			// shoot right if facing right
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
@@ -262,8 +269,8 @@
         }
 
 
-
-        void MineAttack(){
+        // drops mine
+        public void MineAttack(){
             // Instantiate mine where player drops it
             Vector3 mineDrop = transform.position;
             mineDrop -= new Vector3(0.7f, 0.5f, -1f);
@@ -282,7 +289,7 @@
                 GameManager.playersEXP += 50;
 			    Destroy(other.gameObject);  
 		    }
-
+            // adds mine if picked up by player
              if (other.tag == "Mine Refill") {
                  if (GameManager.numOfMine < 15){
 			        GameManager.numOfMine += 5;
@@ -302,30 +309,28 @@
             if (other.tag == "Trampoline"){
             moveDirection.y = jumpHeight* 1.25f;
             }
-
+            // increase wealth when player collides w coin
             if(other.tag == "Gold"){
                 GameManager.playersWealth++;
                 Destroy(other.gameObject);
-                points++;
             }
-
+            // decrease health if player collides w enemy bullet
              if(other.tag == "Enemy Bullet"){
                 gameManager.SendMessage("PlayerDamaged",1,SendMessageOptions.DontRequireReceiver);
                 gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 Destroy(other.gameObject);
             }
-
+            // slow down if hit by freeze bullet
             if(other.tag == "Freeze Bullet"){
                 gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 StartCoroutine(decreaseSpeed(5f));
                 Destroy(other.gameObject);
             }
-
+            // increase wealth if diamond is collected
             if(other.tag == "Diamond"){
                 GameManager.playersWealth+=10;
                 Destroy(other.gameObject);
                 GameManager.playersEXP += 70;
-                points++;
             }
 	    }
 
@@ -346,6 +351,7 @@
 　　		yield return new WaitForSeconds(takenDamage);
 　　		GetComponent<Renderer>().enabled = true;
 　　		yield return new WaitForSeconds(takenDamage);
+            // improve player attributes if struggling
             attackRate += 0.05f;
             takenDamage += 0.025f;
             hitsTaken++;
@@ -353,20 +359,20 @@
             jumpHeight = 7f;
 　　	} 
 
-
+        // increase player speed
         IEnumerator increaseSpeed(float duration){
             walkSpeed = 8.5f;
             yield return new WaitForSeconds(duration);
             walkSpeed = 5;
         }
-
+        // decrease player speed
          IEnumerator decreaseSpeed(float duration){
             walkSpeed = 2.5f;
             yield return new WaitForSeconds(duration);
             walkSpeed = 5;
         }
 
-       
+       // customize player
         public void Custom() {
             // increase player size, player invulnerability, decrease speed
             player.localScale += new Vector3(0.5f, 0.5f, 0);
@@ -374,7 +380,7 @@
             jumpHeight -= 2.5f;
             takenDamage += 0.2f;
         }
-
+        // undo player customization
         public void UndoCustom() {
             // undo changes from Custom() method
             player.localScale -= new Vector3(0.5f, 0.5f, 0);
@@ -382,7 +388,6 @@
             jumpHeight += 2.5f;
             takenDamage -= 0.2f;
         }
-
         public void CreateDust(){
             //Plays dust animation
             dust.Play();

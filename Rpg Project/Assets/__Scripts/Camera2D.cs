@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Camera2D : MonoBehaviour {
-
+        // player object transform
 　　	public Transform player;
-　　
+        // float to lag camera movement
 　　	public float smoothRate = 0.5f;
-    
+        // get camera's transform
 　　	private Transform thisTransform;
+        // 2D vector to handle movement of camera
 　　	private Vector2 velocity;
 　　
 　　	// set up player and velocity

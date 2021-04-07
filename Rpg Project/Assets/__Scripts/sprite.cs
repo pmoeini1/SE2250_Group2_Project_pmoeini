@@ -7,11 +7,6 @@ public class sprite : MonoBehaviour
     public Animator animator;
     public float speed;
     bool jump;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

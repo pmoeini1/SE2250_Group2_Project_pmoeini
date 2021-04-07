@@ -5332,22 +5332,22 @@ PrefabInstance:
     - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.7086753
+      value: 2.3708742
       objectReference: {fileID: 0}
     - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.1947074
+      value: 3.8264658
       objectReference: {fileID: 0}
     - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
       propertyPath: m_Center.x
-      value: 0.23436654
+      value: 0.10480583
       objectReference: {fileID: 0}
     - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
       propertyPath: m_Center.y
-      value: -0.044961594
+      value: 0.1445664
       objectReference: {fileID: 0}
     - target: {fileID: 6761900357063438791, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
@@ -16130,6 +16130,26 @@ PrefabInstance:
       propertyPath: levelName
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.070729
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4.81539
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.06421773
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.049755026
+      objectReference: {fileID: 0}
     - target: {fileID: 6761900357063438791, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
       propertyPath: m_Name
@@ -21762,7 +21782,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 995481728}
   gameManager: {fileID: 1505662296}
-  points: 0
   hitsTaken: 0
   dust: {fileID: 895632291}
   gravity: 10

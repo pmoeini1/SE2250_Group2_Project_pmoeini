@@ -2,25 +2,29 @@
 using System.Collections;
 　　
 　　public class Enemy2D : MonoBehaviour {
+		// get player script
 　　	public Controller2D player;
+		// access GameManager
 　　	public GameManager gameManager;
+		// get coin prefab
 		public Rigidbody coin;
 
-　　	
+		// start and end positions of enemy
 　　	float startPos;
 　　	float endPos;
+		// how much damage enemy takes on collision
 　　	float takenDamage = 0.2f;
-
+		// how far enemy moves
 　　	public int unitsToMove = 5;
-　　	
+		// speed of enemy
 　　	public int moveSpeed = 2;
-　　	
+		// how much damage enemy creates
 		public int damageValue = 1;
-
+		// determines which way enemy is facing
 　　	bool moveRight = true;
-　　
+		// health of enemy
 　　	int enemyHealth = 1;
-　　	
+		// set up type of enemy
 　　	public bool basicEnemy;
 　　	public bool advancedEnemy;
 
@@ -63,12 +67,12 @@ using System.Collections;
 　　			gameManager.SendMessage("PlayerDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
 　　			gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
 　　		}
+			// destroy enemy if hit by mine
 			if (col.gameObject.CompareTag("Mine")){
 			GameManager.playersEXP += 90;
 			DropCoin();
             Destroy(col.gameObject);
             Destroy(gameObject);
-			player.points += 3;
         	}
 　　	}
 
@@ -91,7 +95,6 @@ using System.Collections;
 	    } 
 　　	
 　　	void EnemyDamaged(int damage){
-		player.points += 2;
 			// destroy enemy if enemyHealth is <=0
 　　		if (enemyHealth > 0) {
 　　			enemyHealth -= damage;		
@@ -106,9 +109,11 @@ using System.Collections;
 　　	}
 
 		void DropCoin(){
+			// drop coins around where enemy was destroyed
 			Vector3 coinDrop = transform.position;
 			Vector3 offsetH = new Vector3(0.5f,0f,0f);
 			Vector3 offsetV = new Vector3(0f,0.5f,0f);
+			// ensure coins are dropped on same plane as player
             coinDrop.z = 0f;
             Instantiate (coin, coinDrop, Quaternion.identity);
 			Instantiate (coin, coinDrop + offsetH, Quaternion.identity);

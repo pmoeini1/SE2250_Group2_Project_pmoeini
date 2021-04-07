@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
+    // get drone prefab
     public Rigidbody spawnItem;
-
+    // spawn drone if player hits trigger
     void OnTriggerEnter(Collider other){
         if (other.gameObject.tag == "Player") {
-				spawn();
+				Spawn();
         }
     }
-
-    void spawn(){
+    // get trigger's location, and instantiate drone above it
+    void Spawn(){
 			Vector3 triggerLocation = transform.position;
             Vector3 offSetV = new Vector3(0f, 1f, 0f);
             triggerLocation.z = 0f;
