@@ -340,9 +340,15 @@
 			    Destroy(other.gameObject);
 		    }
 
+            //Kill player when player falls into lava
+             if (other.tag == "Lava") {
+                gameManager.SendMessage("PlayerDamaged",100,SendMessageOptions.DontRequireReceiver);
+                gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
+             }
+
             //push player upwards when player collides with trampoline gameobject
             if (other.tag == "Trampoline"){
-            moveDirection.y = jumpHeight* 1.25f;
+                moveDirection.y = jumpHeight* 1.25f;
             }
             // increase wealth when player collides w coin
             if(other.tag == "Gold"){

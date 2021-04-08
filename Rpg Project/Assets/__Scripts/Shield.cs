@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     // set up how much damage shield creates
-    int damageValue = 3;
+     int damageValue = 3;
     
     void OnTriggerEnter(Collider other){
             // damage enemy on collision
@@ -30,7 +30,12 @@ public class Shield : MonoBehaviour
             if (other.gameObject.tag == "Freeze Bullet") {
             Destroy(other.gameObject);
             }
+            // handle collisions with trap
+            if (other.gameObject.tag == "Trap") {
+            Destroy(other.gameObject);
+            }
 　　	}
+　　	
         
 
 }
