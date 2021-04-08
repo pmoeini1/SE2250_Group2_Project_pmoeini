@@ -194,6 +194,7 @@
                         GameManager.playersEXP = 0;
                         GameManager.maxHealth ++;
                         GameManager.playersLV ++;
+                        walkSpeed += 0.5f;
                         attackRate -= 0.02f;
                         GameManager.playersHealth = GameManager.maxHealth;
                         requiredEXP += 300;
