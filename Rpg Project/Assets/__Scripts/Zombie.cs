@@ -56,7 +56,7 @@ public class Zombie : MonoBehaviour
         void DropFlyer(){
             // drop enemy in position of current GameObject
 			Vector3 flyerDrop = transform.position;
-            Vector3 offsetH = new Vector3(2f,0f,0f);
+            Vector3 offsetH = new Vector3(4f,0f,0f);
             // ensure enemy is in plane of player
             flyerDrop.z = 0f;
             Instantiate (flyer, flyerDrop + offsetH, Quaternion.identity);
