@@ -2,8 +2,6 @@
 　　using System.Collections;
     using UnityEngine.UI;
     using UnityEngine.SceneManagement;
-    
-　　
 　　public class Controller2D : MonoBehaviour, IController2D {
         // get UI of pause menu
         public GameObject pauseMenu;   
