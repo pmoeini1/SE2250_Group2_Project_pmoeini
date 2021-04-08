@@ -54,7 +54,15 @@
         public bool shieldOn;
         // get turret of player
         public GameObject turret;
-        
+        //get jetpack of player
+        public GameObject jetpack;
+        private Vector3 localScale;
+        private Animator anim;
+        private Rigidbody rb;
+        //player direction for animation
+        private float dirX;
+    
+       
 
 　　	
 　　	void Start () {
@@ -65,16 +73,28 @@
             pauseMenu.SetActive(false);
             shieldOn = false;
             turret.SetActive(false);
-
+            anim = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody>(); 
+            localScale = transform.localScale;
 　　	}
 　　	
 　　	
 　　	void Update () {
+            //Animate Running
+             dirX = Input.GetAxisRaw("Horizontal") * walkSpeed;
+
+            if(Mathf.Abs(dirX) > 0 ){
+            anim.SetBool("isRunning", true);
+            }else{
+            anim.SetBool("isRunning", false);
+            }
+
             //Transforms the scaling of the character 
             Vector3 characterScale = transform.localScale;
 　　		// set up horizontal player movement
 　　		characterController.Move (moveDirection * Time.deltaTime);
 　　		horizontal = Input.GetAxis("Horizontal");
+
 　　		// fall if unsupported
 　　		moveDirection.y -= gravity * Time.deltaTime;
             // stay static if no input
@@ -106,12 +126,15 @@
 　　		if (characterController.isGrounded) {
 　　			if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
-　　			}
-　　		}
+                    anim.Play("JumpAnimation");
+　　			} 
+　　		} 
+                          
             // allow player to fly if customized and in bounds
             if (custom){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
+                    anim.Play("JumpAnimation");
 　　			}
             }
 
@@ -180,13 +203,24 @@
             // activate turret if customized, else deactivate
             if (!custom){
                 turret.SetActive(false);
+                jetpack.SetActive(false);
             }
 
             if (custom){
                 turret.SetActive(true);
+                jetpack.SetActive(true);
             }
            
 　　	}
+
+        private void LateUpdate(){
+
+            if (((lookRight) && (localScale.x < 0)) || ((!lookRight) && (localScale.x > 0))){
+                localScale.x *= -1;
+            }
+            transform.localScale = localScale;
+        }
+
         // pause game
         public void Pause(){
             pauseMenu.SetActive(true);
@@ -232,12 +266,14 @@
 　　	public void BulletAttack(){
 　　		if (lookRight) {
 　　			// shoot right if facing right
+                
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
 　　			bPrefab.GetComponent<Rigidbody>().AddForce (Vector3.right * 500);
 　　			coolDown = Time.time + attackRate;
 　　				}
 　　		else {
 　　			// shoot left if facing left
+                
 　　			Rigidbody bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity)as Rigidbody;
 　　			bPrefab.GetComponent<Rigidbody>().AddForce (-Vector3.right * 500);
 　　			coolDown = Time.time + attackRate;
@@ -275,7 +311,7 @@
             Vector3 mineDrop = transform.position;
             mineDrop -= new Vector3(0.7f, 0.5f, -1f);
             Instantiate (mine, mineDrop, Quaternion.identity);
-            GameManager.numOfMine --;
+            GameManager.numOfMine--;
             
         }
 
@@ -328,7 +364,7 @@
             }
             // increase wealth if diamond is collected
             if(other.tag == "Diamond"){
-                GameManager.playersWealth+=10;
+                GameManager.playersWealth += 10;
                 Destroy(other.gameObject);
                 GameManager.playersEXP += 70;
             }
@@ -338,6 +374,7 @@
 	
 　　	
 　　	public IEnumerator TakenDamage(){
+            anim.Play("HitAnimation");
             // flash object once damage is taken
 　　		GetComponent<Renderer>().enabled = false;
 　　		yield return new WaitForSeconds(takenDamage);
@@ -361,7 +398,7 @@
 
         // increase player speed
         IEnumerator increaseSpeed(float duration){
-            walkSpeed = 8.5f;
+            walkSpeed = 10f;
             yield return new WaitForSeconds(duration);
             walkSpeed = 5;
         }
@@ -374,8 +411,7 @@
 
        // customize player
         public void Custom() {
-            // increase player size, player invulnerability, decrease speed
-            player.localScale += new Vector3(0.5f, 0.5f, 0);
+            // increase player invulnerability, decrease speed
             walkSpeed -= 1.5f;
             jumpHeight -= 2.5f;
             takenDamage += 0.2f;
@@ -383,7 +419,6 @@
         // undo player customization
         public void UndoCustom() {
             // undo changes from Custom() method
-            player.localScale -= new Vector3(0.5f, 0.5f, 0);
             walkSpeed += 1.5f;
             jumpHeight += 2.5f;
             takenDamage -= 0.2f;

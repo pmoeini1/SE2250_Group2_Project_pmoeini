@@ -7,15 +7,12 @@ public class sprite : MonoBehaviour
     public Animator animator;
     public float speed;
     bool jump;
-<<<<<<< Updated upstream
-=======
     private float getMovement;
     // Start is called before the first frame update
     void Start()
     {
 
     }
->>>>>>> Stashed changes
 
     // Update is called once per frame
     void Update()
