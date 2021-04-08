@@ -5488,6 +5488,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 689079169314442895, guid: 1d1478ffc47f9df4387c361e3f0cea83,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 689079169901183103, guid: 1d1478ffc47f9df4387c361e3f0cea83,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6414,7 +6419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 631642040}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 6969137403776194907, guid: bf93c448cb8d74349a1edb939120d7fe,
+    type: 3}
   hitsTaken: 0
   dust: {fileID: 1364451796}
   gravity: 10
