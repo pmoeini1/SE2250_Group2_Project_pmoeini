@@ -20,6 +20,7 @@ TagManager:
   - Shield
   - Gun
   - Lava
+  - Trap
   layers:
   - Default
   - TransparentFX
