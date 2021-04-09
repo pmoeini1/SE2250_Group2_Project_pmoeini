@@ -41,7 +41,7 @@
         bool custom = false;
         public int pieceCount = 6;
         // amount of EXP needed to level up initially
-        int requiredEXP = 100;
+        private int requiredEXP = 100;
         //The player's shield
         public GameObject playerShield;
         // Decrements coin if shield is used
@@ -205,7 +205,7 @@
                         walkSpeed += 0.5f;
                         attackRate -= 0.02f;
                         GameManager.playersHealth = GameManager.maxHealth;
-                        requiredEXP += 300;
+                        requiredEXP += 500;
             }
             // decrease coins if shield is used
             ShieldDecreaseCoin();
@@ -381,7 +381,7 @@
             if(other.tag == "Diamond"){
                 GameManager.playersWealth += 10;
                 Destroy(other.gameObject);
-                GameManager.playersEXP += 70;
+                GameManager.playersEXP += 5;
             }
 	    }
 

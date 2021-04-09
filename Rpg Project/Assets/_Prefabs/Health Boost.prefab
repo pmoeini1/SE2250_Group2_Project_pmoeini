@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3896776985884033969}
   - component: {fileID: 5444992335987821044}
   m_Layer: 0
-  m_Name: Health Pickup
+  m_Name: Health Boost
   m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

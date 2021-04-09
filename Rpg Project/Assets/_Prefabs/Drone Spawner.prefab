@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7311598380497485255}
   - component: {fileID: 7311598380497485252}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: Drone Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

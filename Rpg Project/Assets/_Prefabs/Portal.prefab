@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6761900357063438789}
   - component: {fileID: 6761900357063438788}
   m_Layer: 0
-  m_Name: Finish Line
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
