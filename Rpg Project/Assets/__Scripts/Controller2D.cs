@@ -59,12 +59,14 @@
         private Rigidbody rb;
         //player direction for animation
         private float dirX;
+        public Button help;
+        public Text helpText;
     
        
 
 　　	
 　　	void Start () {
-        // get character controller and set all booleans to false
+        // get character controller and set all booleans to false except help button
 　　		characterController = GetComponent<CharacterController>();
             custom = false;
             paused = false;
@@ -74,12 +76,19 @@
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>(); 
             localScale = transform.localScale;
+            help.gameObject.SetActive(true);
 　　	}
 　　	
 　　	
 　　	void Update () {
             //Animate Running
-             dirX = Input.GetAxisRaw("Horizontal") * walkSpeed;
+            dirX = Input.GetAxisRaw("Horizontal") * walkSpeed;
+            
+            if (!paused){
+                help.gameObject.SetActive(true);
+            } else {
+                help.gameObject.SetActive(false);
+            }
 
             if(Mathf.Abs(dirX) > 0 ){
             anim.SetBool("isRunning", true);
@@ -431,6 +440,14 @@
         public void CreateDust(){
             //Plays dust animation
             dust.Play();
+        }
+        // pause game with button
+        public void HelpClick(){
+            if (!paused){
+                Pause();
+            } else {
+                Resume();
+            }
         }
 
         
