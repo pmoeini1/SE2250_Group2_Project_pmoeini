@@ -59,8 +59,9 @@
         private Rigidbody rb;
         //player direction for animation
         private float dirX;
+        // help button
         public Button help;
-        public Text helpText;
+        
     
        
 
