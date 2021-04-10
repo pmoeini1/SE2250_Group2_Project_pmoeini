@@ -141,9 +141,11 @@
             // allow player to fly if customized and in bounds
             if (custom){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
+                    if(GameManager.playersWealth >= 2){
 　　				moveDirection.y = jumpHeight;
                     GameManager.playersWealth -= 2;
                     anim.Play("JumpAnimation");
+                    }
 　　			}
             }
 
