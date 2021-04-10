@@ -18376,7 +18376,7 @@ PrefabInstance:
     - target: {fileID: 6761900357063438788, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
       propertyPath: levelName
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6761900357063438790, guid: fa73217df56abff4aa506d8794f4d46a,
         type: 3}
@@ -24149,7 +24149,6 @@ MonoBehaviour:
   turret: {fileID: 1209497153}
   jetpack: {fileID: 348149495}
   help: {fileID: 683394900}
-  helpText: {fileID: 0}
 --- !u!4 &1365210039
 Transform:
   m_ObjectHideFlags: 0

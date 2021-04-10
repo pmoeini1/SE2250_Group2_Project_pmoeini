@@ -142,6 +142,7 @@
             if (custom){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
+                    GameManager.playersWealth -= 2;
                     anim.Play("JumpAnimation");
 　　			}
             }
