@@ -21,6 +21,9 @@ TagManager:
   - Gun
   - Lava
   - Trap
+  - Magnet
+  - Coin Magnet Pickup
+  - Flying Enemy
   layers:
   - Default
   - TransparentFX

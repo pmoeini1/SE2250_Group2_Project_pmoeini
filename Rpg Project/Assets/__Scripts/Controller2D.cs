@@ -54,6 +54,8 @@
         public GameObject turret;
         //get jetpack of player
         public GameObject jetpack;
+        //get coin magnet game object;
+        public GameObject coinMagnet;
         private Vector3 localScale;
         private Animator anim;
         private Rigidbody rb;
@@ -73,7 +75,6 @@
             paused = false;
             pauseMenu.SetActive(false);
             shieldOn = false;
-            turret.SetActive(false);
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>(); 
             localScale = transform.localScale;
@@ -141,11 +142,9 @@
             // allow player to fly if customized and in bounds
             if (custom){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
-                    if(GameManager.playersWealth >= 2){
 　　				moveDirection.y = jumpHeight;
                     GameManager.playersWealth -= 2;
                     anim.Play("JumpAnimation");
-                    }
 　　			}
             }
 
@@ -353,6 +352,14 @@
 			    Destroy(other.gameObject);
 		    }
 
+            //Enable coin magnet for 10 seconds
+            if (other.tag == "Coin Magnet Pickup") {
+			  StartCoroutine(attractCoin(10f));
+                GameManager.playersEXP += 50;
+			    Destroy(other.gameObject);
+		    }
+
+
             //Kill player when player falls into lava
              if (other.tag == "Lava") {
                 gameManager.SendMessage("PlayerDamaged",100,SendMessageOptions.DontRequireReceiver);
@@ -425,6 +432,13 @@
             walkSpeed = 2.5f;
             yield return new WaitForSeconds(duration);
             walkSpeed = 5;
+        }
+
+         // increase player speed
+        IEnumerator attractCoin(float duration){
+            coinMagnet.SetActive(true);
+            yield return new WaitForSeconds(duration);
+            coinMagnet.SetActive(false);
         }
 
        // customize player

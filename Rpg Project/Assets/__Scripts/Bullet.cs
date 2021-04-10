@@ -26,7 +26,7 @@ using UnityEngine;
 　　	void OnTriggerEnter(Collider other){
         // damage enemy on collision
 　　		if (other.gameObject.tag == "Enemy") {
-                GameManager.playersEXP += 100;
+                GameManager.playersEXP += 30;
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("EnemyDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
@@ -34,12 +34,19 @@ using UnityEngine;
 　　		}
             // damage chest on collision 
             if (other.gameObject.tag == "Chest") {
-                GameManager.playersEXP += 80;
+                GameManager.playersEXP += 50;
 　　			Destroy(gameObject);
 　　			other.gameObject.SendMessage("ChestDamaged",damageValue,SendMessageOptions.DontRequireReceiver);
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
 　　		} 
+
+            if (other.gameObject.tag == "Flying Enmey") {
+                GameManager.playersEXP += 20;
+　　			Destroy(gameObject);
+                Destroy(other.gameObject);
+　　		} 
+
             // handle collisions with walls
             if (other.gameObject.tag == "Walls") {
             Destroy(gameObject);

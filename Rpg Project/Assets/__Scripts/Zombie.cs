@@ -46,11 +46,6 @@ public class Zombie : MonoBehaviour
 　　			Destroy(gameObject);
 				DropFlyer();
 　　		}
-            // destroy if hit by bullet and drop enemy
-             if (col.gameObject.tag == "Bullet") {
-　　			Destroy(gameObject);
-                DropFlyer();
-　　		}
 　　	}
 
         void DropFlyer(){
