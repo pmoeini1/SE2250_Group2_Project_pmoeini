@@ -63,6 +63,7 @@ public class Flyer2D : MonoBehaviour
 			// destroy if hit by bullet
              if (col.gameObject.tag == "Bullet") {
 　　			Destroy(gameObject);
+				Destroy(col.gameObject);
                 DropCoin();
 　　		}
 　　	}

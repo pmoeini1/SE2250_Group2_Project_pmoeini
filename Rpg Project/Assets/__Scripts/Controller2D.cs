@@ -359,7 +359,6 @@
 			    Destroy(other.gameObject);
 		    }
 
-
             //Kill player when player falls into lava
              if (other.tag == "Lava") {
                 gameManager.SendMessage("PlayerDamaged",100,SendMessageOptions.DontRequireReceiver);
@@ -381,6 +380,14 @@
                 gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 Destroy(other.gameObject);
             }
+
+            // decrease health if player collides w vertical patroller
+             if(other.tag == "Flying Enemy"){
+                gameManager.SendMessage("PlayerDamaged",1,SendMessageOptions.DontRequireReceiver);
+                gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
+                GameManager.playersWealth += 10;
+            }
+
             // slow down if hit by freeze bullet
             if(other.tag == "Freeze Bullet"){
                 gameManager.controller2D.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);

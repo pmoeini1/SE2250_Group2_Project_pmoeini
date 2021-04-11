@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 0}
   gameManager: {fileID: 0}
-  speed: 1.5
+  speed: 2.5
   stoppingDistance: 5
   retreatDistance: 3
   damageValue: 1

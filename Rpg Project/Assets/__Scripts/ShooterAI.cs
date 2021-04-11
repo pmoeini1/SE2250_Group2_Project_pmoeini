@@ -13,8 +13,6 @@ public class ShooterAI : MonoBehaviour
     // set up movement boundaries for drone shooter
     public float stoppingDistance;
     public float retreatDistance;
-    // set damage that drone shooer creates
-    public int damageValue = 1;
     // set up time between drone shots
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -72,6 +70,7 @@ public class ShooterAI : MonoBehaviour
             // destroy drone shooter if it hits bullet
              if (col.gameObject.tag == "Bullet") {
 　　			Destroy(gameObject);
+                Destroy(col.gameObject);
                 DropCoin();
 　　		}
             // destroy drone shooter if it hits shield
