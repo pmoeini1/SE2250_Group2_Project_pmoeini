@@ -15,7 +15,7 @@ public class Trigger : MonoBehaviour
     // get trigger's location, and instantiate drone above it
     void Spawn(){
 			Vector3 triggerLocation = transform.position;
-            Vector3 offSetV = new Vector3(0f, 1f, 0f);
+            Vector3 offSetV = new Vector3(0f, 3f, 0f);
             triggerLocation.z = 0f;
             Instantiate (spawnItem, triggerLocation + offSetV, Quaternion.identity);
     }

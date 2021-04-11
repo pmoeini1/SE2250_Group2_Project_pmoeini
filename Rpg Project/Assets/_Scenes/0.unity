@@ -4263,12 +4263,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press W / Space to jump
+  m_text: 'Press W to jump
 
     press a / left arrow towalk left
 
-    press
-    d / right arrow to walk right
+    press d / right
+    arrow to walk right
 
     press p to puase | press R to resume
 
