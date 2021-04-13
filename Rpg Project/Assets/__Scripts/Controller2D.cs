@@ -56,8 +56,11 @@
         public GameObject jetpack;
         //get coin magnet game object;
         public GameObject coinMagnet;
+        // get size of player
         private Vector3 localScale;
+        // get animation
         private Animator anim;
+        // get player rigidbody
         private Rigidbody rb;
         //player direction for animation
         private float dirX;
@@ -143,7 +146,12 @@
             if (custom){
                 if(Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.W)){
 　　				moveDirection.y = jumpHeight;
-                    GameManager.playersWealth -= 2;
+                    if (GameManager.playersWealth >= 2){
+                        GameManager.playersWealth -= 2;
+                    } else if (GameManager.playersWealth == 1){
+                        GameManager.playersWealth--;
+                    }
+                    
                     anim.Play("JumpAnimation");
 　　			}
             }
@@ -265,9 +273,9 @@
                 shieldCounter = 0;
                 if (GameManager.playersWealth >= 3){
                     GameManager.playersWealth -= 3;
-                } else if (GameManager.playersWealth >= 2){
+                } else if (GameManager.playersWealth == 2){
                     GameManager.playersWealth -= 2;
-                } else if (GameManager.playersWealth >= 1){
+                } else if (GameManager.playersWealth == 1){
                     GameManager.playersWealth -= 1;
                 }
             }
@@ -398,7 +406,7 @@
             if(other.tag == "Diamond"){
                 GameManager.playersWealth += 10;
                 Destroy(other.gameObject);
-                GameManager.playersEXP += 5;
+                GameManager.playersEXP += 50;
             }
 	    }
 

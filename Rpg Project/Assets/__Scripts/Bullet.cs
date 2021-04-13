@@ -40,7 +40,7 @@ using UnityEngine;
                 other.gameObject.SendMessage("TakenDamage",SendMessageOptions.DontRequireReceiver);
                 
 　　		} 
-
+            // damage flying enemy on collision
             if (other.gameObject.tag == "Flying Enmey") {
                 GameManager.playersEXP += 20;
 　　			Destroy(gameObject);

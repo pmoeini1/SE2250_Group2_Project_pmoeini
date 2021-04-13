@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-     // hold zombie speed
+    // set speed that coin chases player
     public float speed; 
-    // hold distance zombie goes 
     // set up target to chase
     private Transform target;
+    // determines if coin chases player
     bool doChase = false;
     
      void Start()
     {
-        // make player into target
+        // make player into target if it has magnet
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -28,12 +28,12 @@ public class Coin : MonoBehaviour
     }
 
     void Chase(){
-        // move enmy towards player
+        // move coin towards magnet
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
 
      void OnTriggerEnter(Collider col){
-            // destroy if hit by mine and drop enemy　　		
+            // chase magnet　		
             if (col.gameObject.tag == "Magnet") {
 　　			doChase = true;
 　　		}

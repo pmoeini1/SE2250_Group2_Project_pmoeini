@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    // hold size of character
     private Vector3 localScale;
+    // hold horizontal direction
     private float dirX;
+    // determine which way player faces
     private bool facingRight = true;
     
 
     void Start()
     {
+        // get size of character
        localScale = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // get horizontal direction
         dirX = Input.GetAxisRaw("Horizontal") * 2f;
     }
 
     private void LateUpdate(){
+        // set up which way player is facing dynamically
         if(dirX > 0){
             facingRight = true;
         }
